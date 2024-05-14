@@ -8,7 +8,6 @@ import { FaSquareWhatsapp, FaSquareFacebook, FaSquareXTwitter } from "react-icon
 export const Profile = () => {
   const { login, logout } = useAuth();
 
-
   return (
     <>
       <Header />

@@ -16,7 +16,7 @@ const Reset = () => {
                     className='px-4 py-4 items-start text-black text-sm border-2 rounded-md' />
             </form>
 
-            <button type='submit' className='items-center bg-red-800 text-white w-full lg:w-[400px] py-2 rounded-md text-lg font-bold shadow-lg '>
+            <button type='submit' className='items-center bg-[#72c053] text-white w-full lg:w-[400px] py-2 rounded-md text-lg font-bold shadow-lg '>
                 Send
             </button>
 

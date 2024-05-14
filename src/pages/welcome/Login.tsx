@@ -89,10 +89,10 @@ const Login = () => {
           />
 
         </div>
-        {error && <p className='text-red-500 mb-2'>{error}</p>}
+        {error && <p className='text- mb-2'>{error}</p>}
         <button
           type='submit'
-          className='w-full items-center bg-red-800 text-white lg:w-[400px] py-2 rounded-md text-lg font-bold shadow-lg'
+          className='w-full items-center bg-[#72c053] text-white lg:w-[400px] py-2 rounded-md text-lg font-bold shadow-lg'
           disabled={isLoading}
         >
           {isLoading ? 'Loading...' : 'Log In'}

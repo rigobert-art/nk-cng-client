@@ -1,44 +1,29 @@
 export const plans = [
     {
-        name: "Basic plan",
-        price: 12000,
+        name: "Maendeleo Bank Loan",
+        price: 0,
+        active: 'personal',
         features: [
-            "Curabitur faucibus",
-            "massa ut pretium maximus",
-            "Sed posuere nisi",
-            "Pellentesque eu nibh et neque",
-            "Suspendisse a leo",
-            "Praesent quis venenatis ipsum",
-            "Duis non diam vel tortor",
+            "Original vehicle registration card",
+            "Copy of NIDA Identification Card",
+            "Identification letter from local government",
+
 
         ],
     },
     {
-        name: "Startup",
-        price: 35000,
+        name: "NK CNG Automotive Loan",
+        price: 800000,
+        active: 'personal',
         features: [
-            "Curabitur faucibus",
-            "massa ut pretium maximus",
-            "Sed posuere nisi",
-            "Pellentesque eu nibh et neque",
-            "Suspendisse a leo",
-            "Praesent quis venenatis ipsum",
-            "Duis non diam vel tortor",
+            "Original vehicle registration card",
+            "Copy of NIDA Identification Card",
+            "ID letter from local government",
+            "ID letter of Mdhamini from local government",
+            "ID letter of Mdhamini with permanent contract",
+            "Copy of NIDA of Mdhamini",
         ],
-    },
-    {
-        name: "Enterprise",
-        price: 60000,
-        features: [
-            "Curabitur faucibus",
-            "massa ut pretium maximus",
-            "Sed posuere nisi",
-            "Pellentesque eu nibh et neque",
-            "Suspendisse a leo",
-            "Praesent quis venenatis ipsum",
-            "Duis non diam vel tortor",
-        ],
-    },
+    }
 ];
 
 
