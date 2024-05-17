@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import { NavigationProvider } from '../context/NavProvider';
 import BottomNavBar from '../components/BottomNav';
-import { Payment } from '../pages/payment/upay/Payment';
+import { Payment } from '../pages/payment/user/PayPage';
 import { Profile } from '../pages/profile/Profile';
 import Home from '../pages/dashboard/udash/Home';
 import Norifications from '../pages/notification/Notifications';

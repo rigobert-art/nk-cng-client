@@ -64,7 +64,7 @@ const Sidebar: React.FC = () => {
                 onMouseLeave={() => setIsExpanded(false)}>
                 <div className="flex flex-col h-full">
                     <div className={`h-20 flex items-center ${isExpanded ? 'px-8' : 'justify-center px-8'}`}>
-                        <Link to="/" className="flex-none">
+                        <Link to="/admin/overview" className="flex-none">
                             <img
                                 src={isExpanded ? require("../assets/logo.png") : require("../assets/car.png")}
                                 height={isExpanded ? 140 : 35}

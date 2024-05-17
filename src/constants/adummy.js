@@ -1,7 +1,7 @@
 
 
 import React from "react";
-import { FiSettings, FiBarChart2, FiUsers, FiDollarSign, FiTool, FiHelpCircle, FiLogOut, FiDatabase } from "react-icons/fi";
+import { FiSettings, FiBarChart2, FiUsers, FiDollarSign, FiTool, FiHelpCircle, FiLogOut, FiDatabase, FiMap } from "react-icons/fi";
 
 const image1 = require('../assets/image/1.jpg')
 const image2 = require('../assets/image/2.jpg')
@@ -14,27 +14,32 @@ const azam = require('../assets/image/azam-pesa.png')
 
 export const navigation = [
     {
-        href: "/",
+        href: "/admin/overview",
         name: "Overview",
         icon: <FiDatabase size={18} />,
     },
     {
-        href: "/report",
+        href: "/admin/report",
         name: "Report",
         icon: <FiBarChart2 size={18} />,
     },
     {
-        href: "/user",
+        href: "/admin/map",
+        name: "Map",
+        icon: <FiMap size={18} />,
+    },
+    {
+        href: "/admin/user",
         name: "User",
         icon: <FiUsers size={18} />,
     },
     {
-        href: "/vehicles",
+        href: "/admin/vehicles",
         name: "Vehicles",
         icon: <FiTool size={18} />,
     },
     {
-        href: "/payment",
+        href: "/admin/payment",
         name: "Payment",
         icon: <FiDollarSign size={18} />,
     }
