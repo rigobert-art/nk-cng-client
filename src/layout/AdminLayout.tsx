@@ -12,9 +12,9 @@ export const AdminLayout: React.FC = () => {
         <div className="flex h-screen">
             <Sidebar />
 
-            <div className={`flex-1 ${isSidebarExpanded ? "px-40" : "px-24"}`}>
+            <section className={`py-16 flex-1 ${isSidebarExpanded ? "px-40" : "px-24"}`}>
                 <Outlet />
-            </div>
+            </section>
         </div>
 
     );

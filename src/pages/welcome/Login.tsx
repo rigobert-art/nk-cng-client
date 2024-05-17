@@ -27,7 +27,7 @@ const Login = () => {
           email: 'default@example.com',
         });
         setIsLoggedIn(true);
-        navigate('/home');
+        navigate('/user/home');
       } else {
         // Make the actual API call when the server is working
         const response = await axios.post('http://192.168.100.115:4000/api/v1/user/login', {
@@ -43,7 +43,7 @@ const Login = () => {
           email: response.data.user.email,
         });
         setIsLoggedIn(true);
-        navigate('/home');
+        navigate('/user/home');
       }
     } catch (error) {
       setError('Invalid email or password');

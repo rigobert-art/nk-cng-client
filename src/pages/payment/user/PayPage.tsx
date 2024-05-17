@@ -4,7 +4,7 @@ import { radios } from '../../../constants/dummy';
 import Header from './Header';
 import { sendSMS } from '../../../controllers/smsController';
 
-export const Payment: React.FC = () => {
+export const PayPage: React.FC = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [amount, setAmount] = useState<number>(500);
 

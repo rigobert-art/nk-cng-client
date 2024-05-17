@@ -14,6 +14,10 @@ import DashLayout from './layout/DashLayout';
 import Dashboard from './pages/dashboard/adash/DashBoard';
 import Map from './pages/map/Map';
 import MapLayout from './layout/MapLayout';
+import Home from './pages/dashboard/udash/Home';
+import {PayPage} from './pages/payment/user/PayPage';
+import Notifications from './pages/notification/Notifications';
+import {Profile} from './pages/profile/Profile';
 
 function App() {
   
@@ -22,7 +26,12 @@ function App() {
       <AuthProvider>
         <Router>
           <Routes>
-            <Route path="/user" element={<MainLayout />}></Route>
+            <Route element={<MainLayout />}>
+              <Route path="/user/home" element={<Home />} />
+              <Route path="/user/payment" element={<PayPage />} />
+              <Route path="/user/notifications" element={<Notifications />} />
+              <Route path="/user/profile" element={<Profile />} />
+            </Route>
             <Route element={<AdminLayout />} >
               <Route path="/admin/user" element={<UserPage />} />
               <Route path="/admin/payment" element={<LoanPage />} />
