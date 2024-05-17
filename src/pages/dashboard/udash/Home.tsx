@@ -52,7 +52,7 @@ const Home = () => {
                 <p className='text-green-600 font-extrabold'>Complete</p>
               </div>
             </div>
-            
+
             <div className='flex border border-gray-300 items-center rounded-md shadow-lg px-4 py-6 w-full md:w-1/2 h-42'>
               <div className='ml-4 mx-auto'>
                 <h1 className='text-xl text-green-600 mb-2'>Payment Progress</h1>
@@ -95,29 +95,29 @@ const Home = () => {
             <div className='flex items-center justify-between bg-gray-100 p-4 rounded-md mb-2'>
               <div className='flex items-center'>
                 <div className='bg-green-100 rounded-full p-2'>
-                <GiPayMoney color='green' size={28} />
-              </div>
+                  <GiPayMoney color='green' size={28} />
+                </div>
                 <div className='ml-4'>
                   <p className='font-bold text-green-700'>Paid</p>
                   <p className='text-sm text-gray-600'>Today . 12:03 AM</p>
                 </div>
-                </div>
-              <div className='font-bold text-green-700'>TSH 230,000</div>
               </div>
+              <div className='font-bold text-green-700'>TSH 230,000</div>
+            </div>
             <div className='flex items-center justify-between bg-gray-100 p-4 rounded-md mb-2'>
               <div className='flex items-center'>
                 <div className='bg-green-100 rounded-full p-2'>
-                <GiPayMoney color='green' size={28} />
-              </div>
+                  <GiPayMoney color='green' size={28} />
+                </div>
                 <div className='ml-4'>
                   <p className='font-bold text-green-700'>Paid</p>
                   <p className='text-sm text-gray-600'>Today . 12:03 AM</p>
                 </div>
-                </div>
-              <div className='font-bold text-green-700'>TSH 230,000</div>
               </div>
+              <div className='font-bold text-green-700'>TSH 230,000</div>
             </div>
           </div>
+        </div>
       </main>
     </>
   )

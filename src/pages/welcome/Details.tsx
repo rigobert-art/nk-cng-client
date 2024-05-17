@@ -8,6 +8,15 @@ const Details = () => {
     const [active, setActive] = useState<'personal' | 'other' | 'require'>('require');
     const [loading, setLoading] = useState(false);
 
+    const [ email, setEmail ] = useState('');
+    const [ firstName, setFirstName ] = useState('');
+    const [ lastName, setLastName ] = useState('');
+    const [ phone, setPhone ] = useState('');
+    const [ address, setAddress ] = useState('');
+    const [ city, setCity ] = useState('');
+    const [ zip, setZip ] = useState('');
+    const [ state, setState ] = useState('');
+
     return (
         <section className='w-full items-center justify-center flex flex-col font-serif overflow-auto'>
             <Link to='/' className='absolute right-8 top-8'>
@@ -15,29 +24,29 @@ const Details = () => {
             </Link>
             {loading ? (
                 <div className="flex items-center justify-center space-x-2">
-                    <div className="w-4 h-4 rounded-full animate-pulse dark:bg-violet-600"></div>
-                    <div className="w-4 h-4 rounded-full animate-pulse dark:bg-violet-600"></div>
-                    <div className="w-4 h-4 rounded-full animate-pulse dark:bg-violet-600"></div>
+                    <div className="w-4 h-4 rounded-full animate-pulse dark:bg-green-600"></div>
+                    <div className="w-4 h-4 rounded-full animate-pulse dark:bg-green-600"></div>
+                    <div className="w-4 h-4 rounded-full animate-pulse dark:bg-green-600"></div>
                 </div>
             ) : (
                 <div className='flex gap-x-2 lg:gap-x-12 items-center mb-12 border-b-2 mt-24 px-4'>
                         <div className={`flex items-center mb-2 space-x-2 ${active === 'require' ? 'font-bold mb-2' : 'text-gray-400'}`} onClick={() => setActive('require')}>
                         <div className={`border-4 rounded-full px-2 ${active === 'require' ? 'border-gray-800' : 'border-gray-400'}`}>
-                            <p className='font-semibold'>3</p>
+                            <p className='font-semibold'>1</p>
                         </div>
                         <div className='text-sm font-semibold'>Loans Details</div>
                     </div>
 
                     <div className={`flex items-center mb-2 space-x-2 ${active === 'personal' ? 'font-bold mb-2' : 'text-gray-400'}`} onClick={() => setActive('personal')}>
                         <div className={`border-4 rounded-full px-2 ${active === 'personal' ? 'border-gray-800' : 'border-gray-400'}`}>
-                            <p className='font-semibold'>1</p>
+                            <p className='font-semibold'>2</p>
                         </div>
                         <div className='text-sm font-semibold'>Personal Details</div>
                     </div>
 
                     <div className={`flex items-center mb-2 space-x-2 ${active === 'other' ? 'font-bold mb-2' : 'text-gray-400'}`} onClick={() => setActive('other')}>
                         <div className={`border-4 rounded-full px-2 ${active === 'other' ? 'border-gray-800' : 'border-gray-400'}`}>
-                            <p className='font-semibold'>2</p>
+                            <p className='font-semibold'>3</p>
                         </div>
                         <div className='text-sm font-semibold'>Other Details</div>
                     </div>
@@ -49,9 +58,9 @@ const Details = () => {
                 <>
                     {loading ? (
                         <div className="flex items-center justify-center space-x-2">
-                            <div className="w-4 h-4 rounded-full animate-pulse dark:bg-violet-600"></div>
-                            <div className="w-4 h-4 rounded-full animate-pulse dark:bg-violet-600"></div>
-                            <div className="w-4 h-4 rounded-full animate-pulse dark:bg-violet-600"></div>
+                            <div className="w-4 h-4 rounded-full animate-pulse dark:bg-green-600"></div>
+                            <div className="w-4 h-4 rounded-full animate-pulse dark:bg-green-600"></div>
+                            <div className="w-4 h-4 rounded-full animate-pulse dark:bg-green-600"></div>
                         </div>
                     ) : (
                         <form action="" className="container flex flex-col mx-auto space-y-12 mb-12 px-4">
@@ -65,36 +74,99 @@ const Details = () => {
                                 </div>
                                 <div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3 p-6">
                                     <div className="col-span-full sm:col-span-3">
-                                        <label htmlFor="firstName" className="text-sm">First name</label>
-                                        <input id="firstName" type="text" placeholder="First name" className="w-full rounded-md border px-4 py-2 focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300" />
+                                        <label htmlFor="firstName" className="text-sm">First name
+                                                <span className="text-red-500">*</span>
+                                        </label>
+                                        <input 
+                                            id="firstName" 
+                                            type="text" 
+                                            placeholder="First name" 
+                                            value={firstName}
+                                            onChange={(e) => setFirstName(e.target.value)}
+                                            required
+                                            className="w-full rounded-md border px-4 py-2 focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-green-600 dark:border-gray-300" />
                                     </div>
                                     <div className="col-span-full sm:col-span-3">
-                                        <label htmlFor="lastName" className="text-sm">Last name</label>
-                                        <input id="lastName" type="text" placeholder="Last name" className="w-full rounded-md border px-4 py-2 focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300" />
+                                        <label htmlFor="lastName" className="text-sm">Last name
+                                                <span className="text-red-500">*</span>
+                                        </label>
+                                        <input 
+                                            id="lastName" 
+                                            type="text" 
+                                            placeholder="Last name" 
+                                            value={lastName}
+                                            onChange={(e) => setLastName(e.target.value)}
+                                            required
+                                            className="w-full rounded-md border px-4 py-2 focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-green-600 dark:border-gray-300" />
                                     </div>
                                     <div className="col-span-full sm:col-span-3">
-                                        <label htmlFor="email" className="text-sm">Email</label>
-                                        <input id="email" type="email" placeholder="Email" className="w-full rounded-md border px-4 py-2 focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300" />
+                                        <label htmlFor="email" className="text-sm">Email
+                                                <span className="text-red-500">*</span>
+                                        </label>
+                                        <input 
+                                            id="email" 
+                                            type="email" 
+                                            placeholder="Email" 
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
+                                            required
+                                            className="w-full rounded-md border px-4 py-2 focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-green-600 dark:border-gray-300" />
                                     </div>
                                         <div className="col-span-full sm:col-span-3">
-                                            <label htmlFor="email" className="text-sm">Phone</label>
-                                            <input id="phone" type="phone" placeholder="+255712345678" className="w-full rounded-md border px-4 py-2 focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300" />
+                                            <label htmlFor="email" className="text-sm">Phone
+                                                <span className="text-red-500">*</span>
+                                            </label>
+                                            <input 
+                                                id="phone" 
+                                                type="tel" 
+                                                placeholder="+255712345678" 
+                                                value={phone}
+                                                onChange={(e) => setPhone(e.target.value)}
+                                                required
+                                                className="w-full rounded-md border px-4 py-2 focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-green-600 dark:border-gray-300" />
                                         </div>
                                     <div className="col-span-full">
-                                        <label htmlFor="address" className="text-sm">Address</label>
-                                        <input id="address" type="text" placeholder="" className="w-full rounded-md border px-4 py-2 focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300" />
+                                        <label htmlFor="address" className="text-sm">Address
+                                                <span className="text-red-500">*</span>
+
+                                        </label>
+                                        <input 
+                                            id="address" 
+                                            type="text" 
+                                            placeholder=""
+                                            value={address}
+                                            onChange={(e)=> setAddress(e.target.value)}
+                                            className="w-full rounded-md border px-4 py-2 focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-green-600 dark:border-gray-300" />
                                     </div>
                                     <div className="col-span-full sm:col-span-2">
                                         <label htmlFor="city" className="text-sm">City</label>
-                                        <input id="city" type="text" placeholder="" className="w-full rounded-md border px-4 py-2 focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300" />
+                                        <input 
+                                            id="city" 
+                                            type="text" 
+                                            placeholder="" 
+                                            value={city}
+                                            onChange={(e) => setCity(e.target.value)}
+                                            className="w-full rounded-md border px-4 py-2 focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-green-600 dark:border-gray-300" />
                                     </div>
                                     <div className="col-span-full sm:col-span-2">
                                         <label htmlFor="state" className="text-sm">State / Province</label>
-                                        <input id="state" type="text" placeholder="" className="w-full rounded-md border px-4 py-2 focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300" />
+                                        <input 
+                                            id="state" 
+                                            type="text" 
+                                            placeholder=""
+                                            value={state}
+                                            onChange={(e) => setState(e.target.value)} 
+                                            className="w-full rounded-md border px-4 py-2 focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-green-600 dark:border-gray-300" />
                                     </div>
                                     <div className="col-span-full sm:col-span-2">
                                         <label htmlFor="zip" className="text-sm">ZIP / Postal</label>
-                                        <input id="zip" type="text" placeholder="" className="w-full rounded-md border px-4 py-2 focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300" />
+                                        <input 
+                                            id="zip" 
+                                            type="Number" 
+                                            placeholder=""
+                                            value={zip}
+                                            onChange={(e) => setZip(e.target.value)} 
+                                            className="w-full rounded-md border px-4 py-2 focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-green-600 dark:border-gray-300" />
                                     </div>
                                         <div className="col-span-full">
                                             <label htmlFor="bio" className="text-sm">Photo</label>
@@ -180,7 +252,7 @@ const Details = () => {
                                 </p>
                             </div>
                         </div>
-                        <div className='mt-16 space-y-6 justify-center gap-6 sm:grid sm:grid-cols-2 sm:space-y-0 lg:grid-cols-3'>
+                        <div className='mt-16 space-y-6 justify-center gap-6 sm:grid sm:grid-cols-1 sm:space-y-0 lg:grid-cols-2'>
                             {
                                 plans.map((item, idx) => (
                                     <div key={idx} className='relative flex-1 flex items-stretch flex-col p-8 rounded-xl border-2'>

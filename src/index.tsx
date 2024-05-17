@@ -2,14 +2,14 @@ import ReactDOM from 'react-dom/client'
 import "./index.css";
 import App from "./App";
 import React from 'react';
-import { AuthProvider } from './context/AuthProvider';
+import { AppProvider } from './context/AppProvider';
 // import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <AuthProvider>
+    <AppProvider>
       <App />
-    </AuthProvider>
+    </AppProvider>
   </React.StrictMode>
 )
 

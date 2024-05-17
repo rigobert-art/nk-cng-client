@@ -33,7 +33,7 @@ const Header: React.FC = () => {
                 </Link>
                 <div className="border-2 p-1 border-gray-300 rounded-full mb-8">
                     <img
-                        src={require("../../assets/profile.jpg")}
+                        src={require("../../../assets/profile.jpg")}
                         alt="profile"
                         className="w-12 h-12 rounded-full ring-2 ring-offset-4 dark:bg-gray-500 dark:ring-red-700 dark:ring-offset-gray-100"
                     />

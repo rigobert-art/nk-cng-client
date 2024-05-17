@@ -3,12 +3,14 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../../context/AuthProvider';
+import { useAppContext } from '../../context/AppProvider';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const { login } = useAuth();
+  const { setIsLoggedIn } = useAppContext();
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
@@ -18,11 +20,13 @@ const Login = () => {
       // Simulate server response when the server is not working
       if (email === 'support@gmail.com' && password === 'password') {
         login({
-          token: 'default_token',
-          id: 'default_id',
-          name: 'Default User',
+          token: 'token_ui_nnsdknksjdfno',
+          id: '1',
+          username: 'Default User',
+          phone: "default_phone",
           email: 'default@example.com',
         });
+        setIsLoggedIn(true);
         navigate('/home');
       } else {
         // Make the actual API call when the server is working
@@ -34,10 +38,11 @@ const Login = () => {
         login({
           token: response.data.token,
           id: response.data._id,
-          name: response.data.user.name,
+          username: response.data.user.name,
+          phone: response.data.user.phone,
           email: response.data.user.email,
         });
-
+        setIsLoggedIn(true);
         navigate('/home');
       }
     } catch (error) {
@@ -50,9 +55,12 @@ const Login = () => {
 
   return (
     <section className='max-w-md font-serif mx-auto h-screen flex flex-col items-center justify-center px-4'>
+      <div>
+        <img src={require("../../assets/logo.png")} alt='logo' className='w-32 h-32 absolute left-4 top-4 object-cover'/>
+      </div>
 
-      <div className='mb-6 text-3xl font-bold'>
-        <h1>Sign in to Gas System</h1>
+      <div className='mb-6 text-5xl font-sans text-[#72c053] font-extrabold'>
+        <h1>Loan Portal</h1>
       </div>
 
       <button type='button' className='flex w-full justify-center border lg:w-[400px] py-2 px-8 rounded-md mb-4'>
@@ -89,7 +97,7 @@ const Login = () => {
           />
 
         </div>
-        {error && <p className='text- mb-2'>{error}</p>}
+        {error && <p className='text-red-600 mb-2'>{error}</p>}
         <button
           type='submit'
           className='w-full items-center bg-[#72c053] text-white lg:w-[400px] py-2 rounded-md text-lg font-bold shadow-lg'
@@ -103,7 +111,7 @@ const Login = () => {
         <Link to="/reset" className='text-blue mb-2'>Reset Password</Link>
         <span className='text-gray-400'>
           No account?
-          <Link to="/details" className='text-blue-600 text-base font-medium pl-[1px]'>
+          <Link to="/register" className='text-blue-600 text-base font-medium pl-[1px]'>
             Create one
           </Link>
 

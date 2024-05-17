@@ -2,9 +2,10 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 
 interface User {
-  name: string;
+  username: string;
   id: string;
   email: string;
+  phone: string;
   token: string;
 }
 
