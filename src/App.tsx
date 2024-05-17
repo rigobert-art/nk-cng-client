@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MainLayout from "./layout/UserLayout";
-import Login from "./pages/welcome/Login";
+import Login from "./pages/welcome/UserLogin";
 import Register from "./pages/welcome/Register";
 import Details from './pages/welcome/Details';
 import Reset from './pages/welcome/Reset';
@@ -15,7 +15,7 @@ import Dashboard from './pages/dashboard/adash/DashBoard';
 import Map from './pages/map/Map';
 import MapLayout from './layout/MapLayout';
 import Home from './pages/dashboard/udash/Home';
-import {PayPage} from './pages/payment/user/PayPage';
+import PayPage from './pages/payment/user/PayPage';
 import Notifications from './pages/notification/Notifications';
 import {Profile} from './pages/profile/Profile';
 
@@ -47,7 +47,8 @@ function App() {
               <Route path="/admin/map" element={<Map />} />
             </Route>
             {/* <Route path="/" element={<Welcome />} /> */}
-            <Route path="/" element={<Login />} />
+            <Route path="/user" element={<Login />} />
+            <Route path="/admin" element={<Login />} />
             <Route path="/reset" element={<Reset />} />
             <Route path="/details" element={<Details />} />
             <Route path="/register" element={<Register /> } />

@@ -22,15 +22,18 @@ const writeDatabase = async (database) => {
     }
 };
 
-// store form
+// pay loan with userId and amount and type of loan
 
-export const LoanRecord = async () => {
-    try{
-        const database = readDatabase();
-
-
+export const payLoan = async (loan) => {
+    try {
+        const database = await readDatabase();
+        database.push(loan);
+        await writeDatabase(database);
+    } catch (err) {
+        console.error('Error updating database:', err);
+        throw err;
     }
-} 
+};
 
 // update loan type with userId and type of loan
 
@@ -40,38 +43,38 @@ export const LoanRecord = async () => {
 
 // store form
 
-export const UpdatedRecord = async () => {
-    try {
+// export const UpdatedRecord = async () => {
+//     try {
        
 
 
-    }
-}
+//     }
+// }
 
-export const DeleteRecord = async () => {
-    try {
-        const database = readDatabase();
-
-
-    }
-}
+// export const DeleteRecord = async () => {
+//     try {
+//         const database = readDatabase();
 
 
-export const getAllRecord = async () => {
-    try {
-        const database = readDatabase();
+//     }
+// }
 
 
-    }
-}
-
-export const getIdRecord = async () => {
-    try {
-        const database = readDatabase();
+// export const getAllRecord = async () => {
+//     try {
+//         const database = readDatabase();
 
 
-    }
-}
+//     }
+// }
+
+// export const getIdRecord = async () => {
+//     try {
+//         const database = readDatabase();
+
+
+//     }
+// }
 
 // update loan type with userId and type of loan
 

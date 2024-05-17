@@ -3,20 +3,34 @@ import { MdEdit } from "react-icons/md";
 import { radios } from '../../../constants/dummy';
 import Header from './Header';
 import { sendSMS } from '../../../controllers/smsController';
+import { payLoan } from '../../../controllers/loanController';
+import { useAuth } from '../../../context/AuthProvider';
 
-export const PayPage: React.FC = () => {
+const PayPage: React.FC = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [amount, setAmount] = useState<number>(500);
+  const { user } = useAuth();
+
+  const [ name, setName ] = useState<string>("");
+  const [ number, setNumber ] = useState<string>("");
+  const [ expire, setExpire ] = useState<string>("");
+  const [ security, setSecurity ] = useState<string>("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setShowModal(false);
+      const database = { userId: user?.id, name, number, expire, security, amount };
+      // payLoan(database);
+      // sendSMS("+255755481857", `UNALIPA KIWANGO CHA TZS ${amount}` )
+      setShowModal(false);
+   
   }
 
   const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAmount(Number(e.target.value));
     // sendSMS("+255755481857", `UNALIPA KIWANGO CHA TZS ${amount}`)
   }
+
+  const isFormValid = name && number && expire && security
 
   return (
     <>
@@ -63,10 +77,10 @@ export const PayPage: React.FC = () => {
           </ul>
           <div className="space-y-2 col-span-full lg:col-span-1 mb-2">
             <h1 className='justify-start mb-2 font-bold text-lg '>
-              Add your personal Details
+              Add your payment deetails
             </h1>
             <div className='flex justify-between items-center '>
-              <p className='text-2xl '>{amount}</p>
+              <p className='text-2xl '>TZS {amount}</p>
               <button type='button' onClick={() => setShowModal(true)}>
                 <p className='bg-gray-200 border-2 px-4 py-2 rounded-lg flex gap-x-1 items-center'><MdEdit />Edit</p>
               </button>
@@ -75,36 +89,48 @@ export const PayPage: React.FC = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 col-span-full lg:col-span-3">
             <div>
               <label htmlFor="name" className="text-sm">
-                Card Name
+                Card Holder Name
+                <span className='text-red-500'>*</span>
               </label>
-
 
               <input
                 id="name"
                 type="text"
                 placeholder=""
+                required
+                autoCapitalize='true'
+                value={name}
+                onChange={(e) => setName(e.target.value)}
                 className="w-full rounded-md border px-4 py-2 focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-green-600 dark:border-gray-300"
               />
             </div>
             <div>
               <label htmlFor="number" className="text-sm">
                 Card Number
+                <span className='text-red-500'>*</span>
               </label>
               <input
-                id="lastName"
+                id="number"
                 type="text"
                 placeholder=""
+                required
+                value={number}
+                onChange={(e) => setNumber(e.target.value)}
                 className="w-full rounded-md border px-4 py-2 focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-green-600 dark:border-gray-300"
               />
             </div>
             <div>
               <label htmlFor="expireDate" className="text-sm">
                 Expire Date
+                <span className='text-red-500'>*</span>
               </label>
               <input
                 id="expireDate"
                 type="text"
                 placeholder="MM / YY"
+                autoComplete="cc-number"
+                value={expire}
+                onChange={(e)=> setExpire(e.target.value)}
                 className="w-full rounded-md border px-4 py-2 focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-green-600 dark:border-gray-300"
               />
             </div>
@@ -115,25 +141,20 @@ export const PayPage: React.FC = () => {
               <input
                 id="securityCode"
                 type="text"
+                value={security}
+                autoComplete="cc-csc"
+                onChange={(e) => setSecurity(e.target.value)}
                 placeholder=""
                 className="w-full rounded-md border px-4 py-2 focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-green-600 dark:border-gray-300"
               />
             </div>
-            <div>
-              <label htmlFor="zip" className="text-sm">
-                ZIP / Postal
-              </label>
-              <input
-                id="zip"
-                type="text"
-                placeholder=""
-                className="w-full rounded-md border px-4 py-2 focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-green-600 dark:border-gray-300"
-              />
-            </div>
+      
           </div>
           <button
             type="button"
-            className="relative px-8 py-3 font-semibold bg-green-800 text-gray-200 rounded dark:bg-gray-800 dark:text-gray-100"
+            onClick={handleSubmit}
+            disabled={!isFormValid}
+            className={`relative px-8 py-3 font-semibold rounded ${isFormValid ? 'bg-green-800 text-gray-200' : 'bg-gray-400 text-gray-500 cursor-not-allowed'}`}
           >
             Pay
           </button>
@@ -192,4 +213,4 @@ export const PayPage: React.FC = () => {
   );
 };
 
-
+export default PayPage;
