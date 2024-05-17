@@ -53,10 +53,6 @@ const Avatar: React.FC<AvatarProps> = ({ src, alt, fallback, delayMs }) => {
 const Sidebar: React.FC = () => {
     const [isExpanded, setIsExpanded] = useState(false);
 
-    const toggleSidebar = () => {
-        setIsExpanded((prev) => !prev);
-    };
-
     return (
         <>
             <nav className={`fixed top-0 left-0 ${isExpanded ? 'w-full h-full border-r bg-white space-y-8 sm:w-80' : 'w-20 h-full border-r bg-white space-y-8'}`}
@@ -151,12 +147,12 @@ const Sidebar: React.FC = () => {
                     </div>
                 </div>
             </nav>
-            <button
+            {/* <button
                 onClick={toggleSidebar}
                 className="fixed top-4 right-4 w-10 h-10 bg-gray-800 text-white flex items-center justify-center rounded-full focus:outline-none"
             >
                 {isExpanded ? "-" : "+"}
-            </button>
+            </button> */}
         </>
     );
 };

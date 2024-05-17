@@ -13,6 +13,7 @@ import Report from './pages/report/Report';
 import DashLayout from './layout/DashLayout';
 import Dashboard from './pages/dashboard/adash/DashBoard';
 import Map from './pages/map/Map';
+import MapLayout from './layout/MapLayout';
 
 function App() {
   
@@ -27,10 +28,14 @@ function App() {
               <Route path="/admin/payment" element={<LoanPage />} />
               <Route path="/admin/vehicles" element={<VehiclePage />} />
               <Route path="/admin/report" element={<Report />} />
-              <Route path="/admin/map" element={<Map />} />
             </Route>
+
             <Route element={<DashLayout />} >
               <Route path='/admin/overview' element={<Dashboard />} />
+            </Route>
+
+            <Route element={<MapLayout/>}>
+              <Route path="/admin/map" element={<Map />} />
             </Route>
             {/* <Route path="/" element={<Welcome />} /> */}
             <Route path="/" element={<Login />} />
