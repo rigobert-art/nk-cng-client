@@ -3,6 +3,7 @@ import { useAuth } from '../../context/AuthProvider';
 
 import { MdAdd, MdDashboard, MdHelpOutline, MdPayment } from "react-icons/md";
 import { FaSquareWhatsapp, FaSquareFacebook, FaSquareXTwitter } from "react-icons/fa6";
+import { Link } from 'react-router-dom';
 
 
 export const Profile = () => {
@@ -100,18 +101,18 @@ const Header = () => {
       <div>
         <div className='flex items-center px-4 gap-x-4 mt-8'>
           {/* Navigation Icons */}
-          <div className=' hidden lg:flex gap-x-1 font-bold items-center text-base'>
+          <Link to="/user/home" className=' hidden lg:flex gap-x-1 font-bold items-center text-base'>
             <MdDashboard size={24} />
             <p>Dashboard</p>
-          </div>
-          <div className='hidden lg:flex gap-x-1 font-bold items-center text-base'>
+          </Link>
+          <Link to="/user/payment" className='hidden lg:flex gap-x-1 font-bold items-center text-base'>
             <MdPayment size={24} />
             <p>Payment</p>
-          </div>
-          <div className='hidden lg:flex gap-x-1 font-bold items-center text-base'>
+          </Link>
+          <Link to="https://nkcngautomotive.com/contact" className='hidden lg:flex gap-x-1 font-bold items-center text-base'>
             <MdHelpOutline size={24} />
             <p>Support</p>
-          </div>
+          </Link>
 
           {/* Profile Image */}
           <div className='border-2 p-1 rounded-full mb-12 border-gray-300 '>

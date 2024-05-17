@@ -19,15 +19,15 @@ const Header: React.FC = () => {
                 <div className="blur-[106px] h-32 bg-gradient-to-r from-cyan-400 to-sky-300 dark:to-indigo-600"></div>
             </div>
             <div className="flex items-center gap-x-4 mt-8">
-                <Link to="/" className="hidden lg:flex gap-x-1 font-bold items-center text-base">
+                <Link to="/user/home" className="hidden lg:flex gap-x-1 font-bold items-center text-base">
                     <MdDashboard size={24} />
                     <p>Dashboard</p>
                 </Link>
-                <Link to="/payment" className="hidden lg:flex gap-x-1 font-bold items-center text-base">
+                <Link to="/user/payment" className="hidden lg:flex gap-x-1 font-bold items-center text-base">
                     <MdPayment size={24} />
                     <p>Payment</p>
                 </Link>
-                <Link to="/support" className="hidden lg:flex gap-x-1 font-bold items-center text-base">
+                <Link to="https://nkcngautomotive.com/contact" className="hidden lg:flex gap-x-1 font-bold items-center text-base">
                     <MdHelpOutline size={24} />
                     <p>Support</p>
                 </Link>

@@ -1,4 +1,5 @@
 import { MdDashboard, MdHelpOutline, MdHome, MdPayment } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const Header: React.FC = () => {
     return (
@@ -13,18 +14,18 @@ const Header: React.FC = () => {
    
             <div>
                 <div className="flex items-center px-4 gap-x-4 mt-8">
-                    <div className="hidden lg:flex gap-x-1 font-bold items-center text-base">
+                    <Link to="/user/home" className="hidden lg:flex gap-x-1 font-bold items-center text-base">
                         <MdDashboard size={24} />
                         <p>Dashboard</p>
-                    </div>
-                    <div className="hidden lg:flex gap-x-1 font-bold items-center text-base">
+                    </Link>
+                    <Link to="/user/payment" className="hidden lg:flex gap-x-1 font-bold items-center text-base">
                         <MdPayment size={24} />
                         <p>Payment</p>
-                    </div>
-                    <div className="hidden lg:flex gap-x-1 font-bold items-center text-base">
+                    </Link>
+                    <Link to="https://nkcngautomotive.com/contact" className="hidden lg:flex gap-x-1 font-bold items-center text-base">
                         <MdHelpOutline size={24} />
                         <p>Support</p>
-                    </div>
+                    </Link>
 
                 </div>
             </div>
