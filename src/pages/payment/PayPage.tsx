@@ -1,28 +1,26 @@
 import React, { useState } from 'react';
 import { MdEdit } from "react-icons/md";
-import { radios } from '../../../constants/dummy';
+import { radios } from '../../constants/dummy';
 import Header from './Header';
-import { sendSMS } from '../../../controllers/smsController';
-import { payLoan } from '../../../controllers/loanController';
-import { useAuth } from '../../../context/AuthProvider';
+import { useAuth } from '../../context/AuthProvider';
 
 const PayPage: React.FC = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [amount, setAmount] = useState<number>(500);
   const { user } = useAuth();
 
-  const [ name, setName ] = useState<string>("");
-  const [ number, setNumber ] = useState<string>("");
-  const [ expire, setExpire ] = useState<string>("");
-  const [ security, setSecurity ] = useState<string>("");
+  const [name, setName] = useState<string>("");
+  const [number, setNumber] = useState<string>("");
+  const [expire, setExpire] = useState<string>("");
+  const [security, setSecurity] = useState<string>("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-      const database = { userId: user?.id, name, number, expire, security, amount };
-      // payLoan(database);
-      // sendSMS("+255755481857", `UNALIPA KIWANGO CHA TZS ${amount}` )
-      setShowModal(false);
-   
+    const database = { userId: user?.id, name, number, expire, security, amount };
+    // payLoan(database);
+    // sendSMS("+255755481857", `UNALIPA KIWANGO CHA TZS ${amount}` )
+    setShowModal(false);
+
   }
 
   const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -130,7 +128,7 @@ const PayPage: React.FC = () => {
                 placeholder="MM / YY"
                 autoComplete="cc-number"
                 value={expire}
-                onChange={(e)=> setExpire(e.target.value)}
+                onChange={(e) => setExpire(e.target.value)}
                 className="w-full rounded-md border px-4 py-2 focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-green-600 dark:border-gray-300"
               />
             </div>
@@ -148,7 +146,7 @@ const PayPage: React.FC = () => {
                 className="w-full rounded-md border px-4 py-2 focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-green-600 dark:border-gray-300"
               />
             </div>
-      
+
           </div>
           <button
             type="button"

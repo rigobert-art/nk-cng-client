@@ -3,7 +3,7 @@ import { MdPendingActions } from "react-icons/md";
 import { GiPayMoney } from "react-icons/gi";
 import Header from './Header';
 
-const Home = () => {
+const HomePage = () => {
   const [currentSkill, setCurrentSkill] = useState({ title: 'progress', percent: 10 });
 
   return (
@@ -123,5 +123,5 @@ const Home = () => {
   )
 }
 
-export default Home;
+export default HomePage;
 

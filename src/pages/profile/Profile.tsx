@@ -59,7 +59,7 @@ export const Profile = () => {
 const Header = () => {
 
   return (
-    <section className='flex w-full justify-between lg:px-12 items-center h-[220px] bg-green-700 text-white font-serif'>
+    <section className='flex w-full justify-between lg:px-12 items-center h-[220px] bg-[#72c053] text-white font-serif'>
       <div className=' lg:px-8 text-bold px-6'>
         <div className='flex text-xs items-center gap-x-1'>
           <p className=''>@enocrunk </p>
@@ -101,11 +101,11 @@ const Header = () => {
       <div>
         <div className='flex items-center px-4 gap-x-4 mt-8'>
           {/* Navigation Icons */}
-          <Link to="/user/home" className=' hidden lg:flex gap-x-1 font-bold items-center text-base'>
+          <Link to="/home" className=' hidden lg:flex gap-x-1 font-bold items-center text-base'>
             <MdDashboard size={24} />
             <p>Dashboard</p>
           </Link>
-          <Link to="/user/payment" className='hidden lg:flex gap-x-1 font-bold items-center text-base'>
+          <Link to="/payment" className='hidden lg:flex gap-x-1 font-bold items-center text-base'>
             <MdPayment size={24} />
             <p>Payment</p>
           </Link>
