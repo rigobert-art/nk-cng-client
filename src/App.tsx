@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MainLayout from "./layout/UserLayout";
-import Login from "./pages/welcome/UserLogin";
+import AdminLogin from "./pages/welcome/AdminLogin";
+import UserLogin from "./pages/welcome/UserLogin";
 import Register from "./pages/welcome/Register";
 import Details from './pages/welcome/Details';
 import Reset from './pages/welcome/Reset';
@@ -47,8 +48,8 @@ function App() {
               <Route path="/admin/map" element={<Map />} />
             </Route>
             {/* <Route path="/" element={<Welcome />} /> */}
-            <Route path="/user" element={<Login />} />
-            <Route path="/admin" element={<Login />} />
+            <Route path="/user" element={<UserLogin />} />
+            <Route path="/admin" element={<AdminLogin />} />
             <Route path="/reset" element={<Reset />} />
             <Route path="/details" element={<Details />} />
             <Route path="/register" element={<Register /> } />

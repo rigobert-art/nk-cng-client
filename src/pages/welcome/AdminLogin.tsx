@@ -56,11 +56,11 @@ const Login = () => {
   return (
     <section className='max-w-md font-serif mx-auto h-screen flex flex-col items-center justify-center px-4'>
       <div>
-        <img src={require("../../assets/logo.png")} alt='logo' className='w-32 h-32 absolute left-4 top-4 object-cover'/>
+        <img src={require("../../assets/logo.png")} alt='logo' className='w-32 h-32 absolute left-4 top-4 object-cover' />
       </div>
 
       <div className='mb-6 text-5xl font-sans text-[#72c053] font-extrabold'>
-        <h1>Loan Management System</h1>
+        <h1>NK LMS</h1>
       </div>
 
       <button type='button' className='flex w-full justify-center border lg:w-[400px] py-2 px-8 rounded-md mb-4'>
