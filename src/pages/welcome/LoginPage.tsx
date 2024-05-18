@@ -17,20 +17,9 @@ const Login = () => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
-      // Simulate server response when the server is not working
-      if (email === 'support@gmail.com' && password === 'password') {
-        login({
-          token: 'token_ui_nnsdknksjdfno',
-          id: '1',
-          username: 'Default User',
-          phone: "default_phone",
-          email: 'default@example.com',
-        });
-        setIsLoggedIn(true);
-        navigate('/user/home');
-      } else {
+    
         // Make the actual API call when the server is working
-        const response = await axios.post('http://192.168.100.115:4000/api/v1/user/login', {
+      const response = await axios.post('http://192.168.100.131:4000/api/v1/user/login', {
           email,
           password,
         });
@@ -38,15 +27,20 @@ const Login = () => {
         login({
           token: response.data.token,
           id: response.data._id,
-          username: response.data.user.name,
           phone: response.data.user.phone,
           email: response.data.user.email,
         });
         setIsLoggedIn(true);
-        navigate('/user/home');
+        navigate('/home');
       }
-    } catch (error) {
-      setError('Invalid email or password');
+    catch (err) {
+      if (axios.isAxiosError(err) && err.response) {
+        // Error from the server
+        setError(err.response.data.message || 'An unexpected error occurred');
+      } else {
+        // Other errors (network issues, etc.)
+        setError('An unexpected error occurred');
+      }
       console.error('Error during login:', error);
     } finally {
       setIsLoading(false);
@@ -77,7 +71,7 @@ const Login = () => {
             id="email"
             name="email"
             placeholder="Enter your email or phone number"
-            className="px-4 py-2 text-black text-sm border-2 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="px-4 py-2 text-black text-sm border-2 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-green-500"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -90,7 +84,7 @@ const Login = () => {
             id="password"
             name="password"
             placeholder="Enter your password"
-            className="px-4 py-2 text-black text-sm border-2 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="px-4 py-2 text-black text-sm border-2 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-green-500"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required

@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MainLayout from "./layout/UserLayout";
-import Register from "./pages/welcome/Register";
+import Register from "./pages/welcome/RegisterPage";
 import Details from './pages/welcome/Details';
 import Reset from './pages/welcome/Reset';
 import { AuthProvider } from './context/AuthProvider';
