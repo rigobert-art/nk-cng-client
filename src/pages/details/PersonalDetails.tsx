@@ -13,9 +13,9 @@ const PersonalDetailsForm: React.FC<PersonalDetailsFormProps> = ({ setActive }) 
     const [lastName, setLastName] = useState('');
     const [phone, setPhone] = useState('');
     const [address, setAddress] = useState('');
-    const [city, setCity] = useState('');
+    const [nationalId, setNationalId] = useState('');
     const [zip, setZip] = useState('');
-    const [state, setState] = useState('');
+    const [region, setRegion] = useState('');
     const [photo, setPhoto] = useState<File | null>(null);
     const [error, setError] = useState('');
 
@@ -34,10 +34,12 @@ const PersonalDetailsForm: React.FC<PersonalDetailsFormProps> = ({ setActive }) 
 
 
         try {
-            await axios.post('http://127.0.0.1:4000/api/v1/form/create/', firstName,
-            
+            await axios.post('http://127.0.0.1:4000/api/v1/form/create/', {firstName,
+                lastName, phone, email, nationalId, region, zip}
             
             );
+
+            console.log(firstName, lastName, phone, email, nationalId, region)
 
             setLoading(false);
             setActive('other');
@@ -134,12 +136,12 @@ const PersonalDetailsForm: React.FC<PersonalDetailsFormProps> = ({ setActive }) 
                                 />
                             </div>
                             <div className="col-span-full sm:col-span-2">
-                                <label htmlFor="city" className="text-sm">City</label>
+                                <label htmlFor="city" className="text-sm">National ID </label>
                                 <input
                                     id="city"
                                     type="text"
-                                    value={city}
-                                    onChange={(e) => setCity(e.target.value)}
+                                    value={nationalId}
+                                onChange={(e) => setNationalId(e.target.value)}
                                     className="w-full rounded-md border px-4 py-2 focus:ring focus:ring-opacity-75 text-gray-900 focus:ring-green-600 border-gray-300"
                                 />
                             </div>
@@ -148,8 +150,8 @@ const PersonalDetailsForm: React.FC<PersonalDetailsFormProps> = ({ setActive }) 
                                 <input
                                     id="state"
                                     type="text"
-                                    value={state}
-                                    onChange={(e) => setState(e.target.value)}
+                                    value={region}
+                                    onChange={(e) => setRegion(e.target.value)}
                                     className="w-full rounded-md border px-4 py-2 focus:ring focus:ring-opacity-75 text-gray-900 focus:ring-green-600 border-gray-300"
                                 />
                             </div>
