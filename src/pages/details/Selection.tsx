@@ -10,6 +10,8 @@ interface LoanSelectionProps {
 const LoanSelection: React.FC<LoanSelectionProps> = ({ setActive }) => {
     const [selectedLoan, setSelectedLoan] = React.useState<string | null>(null);
     const handleSelectLoan = async (loanType: string) => {
+        setActive('personal');
+        setSelectedLoan(loanType);
         try {
             await axios.post('/api/select-loan', { loanType });
             setActive('personal');

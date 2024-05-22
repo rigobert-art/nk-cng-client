@@ -16,10 +16,11 @@ const Login = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    console.log(email)
     try {
     
         // Make the actual API call when the server is working
-      const response = await axios.post('http://192.168.100.131:4000/api/v1/user/login', {
+      const response = await axios.post('http://127.0.0.1:4000/api/v1/user/login', {
           email,
           password,
         });
