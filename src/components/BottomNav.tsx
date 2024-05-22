@@ -15,7 +15,7 @@ const BottomNavBar = () => {
   return (
     <nav className="fixed bottom-2 rounded-b-3xl shadow-lg border-2 left-2 right-2 bg-white p-2 flex justify-around items-center md:hidden">
       <Link
-        to="/user/home"
+        to="/home"
         onClick={() => handleTabChange('home')}
         className={`${activeTab === 'home' ? 'active flex bg-green-100 py-2 px-4 gap-x-2 rounded-2xl text-green-700 items-center' : ''}`}
       >
@@ -24,7 +24,7 @@ const BottomNavBar = () => {
       </Link>
 
       <Link 
-        to="/user/payment"
+        to="/payment"
         onClick={() =>  handleTabChange('payment')}
         className={`${activeTab === 'payment' ? 'active flex bg-green-100 py-2 px-4 gap-x-2 rounded-2xl text-green-700 items-center ' : ''}`}>
         <MdPayment size={22} color="green"/>
@@ -40,7 +40,7 @@ const BottomNavBar = () => {
       </Link>
 
       <Link
-        to="/user/profile"
+        to="/profile"
         onClick={() => handleTabChange('profile')}
         className={`${activeTab === 'profile' ? 'active flex bg-green-100 py-2 px-4 gap-x-2 rounded-b-2xl text-green-700 items-center' : ''}`}>
         <MdAccountBox size={22} color='green'/>

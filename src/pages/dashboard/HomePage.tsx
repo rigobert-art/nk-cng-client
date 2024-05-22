@@ -21,8 +21,8 @@ const HomePage = () => {
               <p className='text-3xl font-bold'>TSH 0</p>
             </div>
             <div className='bg-blue-100 p-4 rounded-md shadow-lg flex flex-col items-center'>
-              <p className='text-medium font-bold mb-2'>Total Cars</p>
-              <p className='text-3xl font-bold'>1 Refill</p>
+              <p className='text-medium font-bold mb-2'>Total Request</p>
+              <p className='text-3xl font-bold'>0 Refill</p>
             </div>
           </div>
         </div>

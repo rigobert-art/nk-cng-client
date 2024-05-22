@@ -1,5 +1,6 @@
 export const plans = [
     {
+        loanId: 2002,
         name: "Maendeleo Bank Loan",
         price: 0,
         active: 'personal',
@@ -12,6 +13,7 @@ export const plans = [
         ],
     },
     {
+        loanId: 2003,
         name: "NK CNG Automotive Loan",
         price: 800000,
         active: 'personal',

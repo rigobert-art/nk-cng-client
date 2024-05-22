@@ -5,7 +5,7 @@ const Header: React.FC = () => {
     return (
         <header className="flex justify-between items-center h-[120px] bg-[#72c053] text-white lg:px-12">
             <div className="lg:px-8 text-bold">
-                <Link to="/user/home/" className="flex items-center gap-x-1 px-6">
+                <Link to="/" className="flex items-center gap-x-1 px-6">
                     <MdHome size={22} />
                     <p className="text-md">Home</p>
                 </Link>

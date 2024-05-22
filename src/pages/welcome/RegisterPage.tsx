@@ -58,8 +58,6 @@ const RegisterPage: React.FC = () => {
                 password,
             });
 
-            console.log(phone, email, password);
-            console.log(response.data);
 
             if (response.data.status === 'error') {
                 setError(response.data.message);
@@ -67,14 +65,7 @@ const RegisterPage: React.FC = () => {
                 return;
             }
 
-            // login({
-            //     token: response.data.token,
-            //     id: response.data.id,
-            //     phone: response.data.phone,
-            //     email: response.data.email,
-            // });
-
-            navigate('/login');
+            navigate('/verify');
         } catch (err) {
             if (axios.isAxiosError(err) && err.response) {
                 // Error from the server
@@ -116,7 +107,7 @@ const RegisterPage: React.FC = () => {
                         placeholder="Enter your email"
                         autoComplete="off"
                         ref={emailRef}
-                        aria-describedby="emailnote"
+                        aria-describedby="email-error"
                         onFocus={() => setEmailFocus(true)}
                         onBlur={() => setEmailFocus(false)}
                         className="px-4 py-2 text-black text-sm border-2 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-green-500"
@@ -124,7 +115,7 @@ const RegisterPage: React.FC = () => {
                         onChange={(e) => setEmail(e.target.value)}
                         required
                     />
-                    <p id="emailnote" className={emailFocus && email ? "font-sm border-2 bg-black text-white p-1 relative bottom-[-10px]" : "absolute left-[-9999px]"}>
+                    <p id="email-error" className={emailFocus && email ? "font-sm border-2 bg-black text-white p-1 relative bottom-[-10px]" : "absolute left-[-9999px]"}>
                         <FaCircleInfo className="inline-block mr-1" />
                         Must be a valid email address.
                     </p>
@@ -142,7 +133,7 @@ const RegisterPage: React.FC = () => {
                         name="phone"
                         autoComplete='off'
                         ref={phoneRef}
-                        aria-describedby="uidnote"
+                        aria-describedby="phone-note"
                         onFocus={() => setPhoneFocus(true)}
                         onBlur={() => setPhoneFocus(false)}
                         placeholder="+255723424234"
@@ -151,7 +142,7 @@ const RegisterPage: React.FC = () => {
                         onChange={(e) => setPhone(e.target.value)}
                         required
                     />
-                    <p id="uidnote" className={phoneFocus && phone ? "font-sm border-2 bg-black text-white p-1 relative bottom-[-10px]" : "absolute left-[-9999px]"}>
+                    <p id="phone-note" className={phoneFocus && phone ? "font-sm border-2 bg-black text-white p-1 relative bottom-[-10px]" : "absolute left-[-9999px]"}>
                         <FaCircleInfo className="inline-block mr-1" />
                         Must be a valid phone number.
                     </p>
@@ -203,11 +194,12 @@ const RegisterPage: React.FC = () => {
                         onChange={(e) => setMatchPwd(e.target.value)}
                         required
                         aria-invalid={validMatch ? "false" : "true"}
-                        aria-describedby="confirmnote"
+                        aria-describedby="confirm-note"
                         onFocus={() => setMatchFocus(true)}
                         onBlur={() => setMatchFocus(false)}
                     />
-                    <p id="confirmnote" className={matchFocus && !validMatch ? "font-sm border-2 bg-black text-white p-1 relative bottom-[-10px]" : "absolute left-[-9999px]"}>
+                    <p id="confirm
+                    note" className={matchFocus && !validMatch ? "font-sm border-2 bg-black text-white p-1 relative bottom-[-10px]" : "absolute left-[-9999px]"}>
                         <FaCircleInfo className="inline-block mr-1" />
                         Must match the first password input field.
                     </p>
