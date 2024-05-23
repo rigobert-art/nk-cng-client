@@ -3,6 +3,8 @@ import { MdEdit } from "react-icons/md";
 import { radios } from '../../constants/dummy';
 import Header from './Header';
 import { useAuth } from '../../context/AuthProvider';
+import { useAppContext } from '../../context/AppProvider';
+import axios from "axios"
 
 const PayPage: React.FC = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -14,18 +16,33 @@ const PayPage: React.FC = () => {
   const [expire, setExpire] = useState<string>("");
   const [security, setSecurity] = useState<string>("");
 
+  const { isLoading, setIsLoading, isError, setIsError } = useAppContext();
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const database = { userId: user?.id, name, number, expire, security, amount };
+    setIsLoading(false);
+    setIsError(false)
     // payLoan(database);
     // sendSMS("+255755481857", `UNALIPA KIWANGO CHA TZS ${amount}` )
     setShowModal(false);
 
   }
 
-  const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleAmountChange = async(e: React.ChangeEvent<HTMLInputElement>) => {
     setAmount(Number(e.target.value));
     // sendSMS("+255755481857", `UNALIPA KIWANGO CHA TZS ${amount}`)
+
+    try{
+        const response = await axios.post("http://127.0.0.1:4000/api/v1/payment/make", 
+        {
+          name, number, expire, security
+        })
+        
+      setIsLoading(true)
+    }catch{
+
+    }
   }
 
   const isFormValid = name && number && expire && security

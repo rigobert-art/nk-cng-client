@@ -27,10 +27,13 @@ const Login = () => {
 
         login({
           token: response.data.token,
-          id: response.data._id,
+          id: response.data.user._id,
           phone: response.data.user.phone,
           email: response.data.user.email,
         });
+        console.log(response.data.user._id)
+        // console.log(login)
+        
         setIsLoggedIn(true);
         navigate('/home');
       }

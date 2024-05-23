@@ -20,10 +20,8 @@ export const Profile = () => {
             <MdAdd className='border-2 w-12 h-12 rounded-lg border-black bg-gray-400' />
 
             <div className='border-2 border-black bg-gray-100 w-72 rounded-md'></div>
-            <div className='border-2 border-black bg-gray-100 w-72 rounded-md'></div>
-            <div className='border-2 border-black bg-gray-100 w-72 rounded-md'></div>
-            <div className='border-2 border-black bg-gray-100 w-72 rounded-md'></div>
-            <div className='border-2 border-black bg-gray-100 w-72 rounded-md'></div>
+            
+           
           </div>
 
           <div className='mt-8 text-wrap mx-auto '>
@@ -91,11 +89,6 @@ const Header = () => {
           <p className='font-bold text-sm'>Add Bio</p>
         </div>
 
-        <div aria-hidden="true"
-          className="absolute top-0 inset-0 h-max w-full m-auto grid grid-cols-2 -space-x-52 opacity-40 dark:opacity-20">
-          <div className="blur-[106px] h-56 bg-gradient-to-br from-teal-500 to-purple-400 dark:from-blue-700"></div>
-          <div className="blur-[106px] h-32 bg-gradient-to-r from-cyan-400 to-sky-300 dark:to-indigo-600"></div>
-        </div>
 
       </div>
       <div>
@@ -116,7 +109,7 @@ const Header = () => {
 
           {/* Profile Image */}
           <div className='border-2 p-1 rounded-full mb-12 border-gray-300 '>
-            <img src={require("../../assets/profile.jpg")} alt="profile" className='rounded-full object-center bg-yellow-300 w-18 h-18 ' />
+            <img src={require("../../assets/profile.jpg")} alt="profile" className='rounded-full object-center bg-yellow-300 w-12 h-12 ' />
           </div>
         </div>
       </div>

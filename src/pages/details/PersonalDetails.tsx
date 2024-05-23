@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useAuth } from '../../context/AuthProvider';
+import { FiUploadCloud } from 'react-icons/fi';
 
 interface PersonalDetailsFormProps {
     setActive: React.Dispatch<React.SetStateAction<'personal' | 'other' | 'require'>>;
@@ -16,7 +17,7 @@ const PersonalDetailsForm: React.FC<PersonalDetailsFormProps> = ({ setActive }) 
     const [nationalId, setNationalId] = useState('');
     const [zip, setZip] = useState('');
     const [region, setRegion] = useState('');
-    const [photo, setPhoto] = useState<File | null>(null);
+    const [file, setFile] = useState<File | null>(null);
     const [error, setError] = useState('');
 
     const { user } = useAuth();
@@ -26,7 +27,11 @@ const PersonalDetailsForm: React.FC<PersonalDetailsFormProps> = ({ setActive }) 
         setLoading(true);
         setError('');
 
-        if (!photo) {
+        console.log(
+            user?.id,
+        )
+
+        if (!file) {
             setError('Please upload a photo.');
             setLoading(false);
             return;
@@ -34,15 +39,25 @@ const PersonalDetailsForm: React.FC<PersonalDetailsFormProps> = ({ setActive }) 
 
 
         try {
-            await axios.post('http://127.0.0.1:4000/api/v1/form/create/', {firstName,
-                lastName, phone, email, nationalId, region, zip}
+            const response = await axios.post('http://127.0.0.1:4000/api/v1/form/create/', {
+                userId: user?.id, 
+                firstName,
+                lastName, 
+                phone, 
+                email, 
+                nationalId, 
+                region, 
+                address,
+                zip
+            }
             
             );
 
-            console.log(firstName, lastName, phone, email, nationalId, region)
+            await handlePhotoUpload(response.data._id);
 
-            setLoading(false);
-            setActive('other');
+            setLoading(true);
+            setActive("other");
+            
         } catch (err) {
             if (axios.isAxiosError(err) && err.response) {
                 // Error from the server
@@ -55,7 +70,30 @@ const PersonalDetailsForm: React.FC<PersonalDetailsFormProps> = ({ setActive }) 
         } finally {
             setLoading(false);
         }
-    };
+    }
+
+        const handlePhotoUpload = async (formId: string) => {
+            if (!file) return;
+
+            try {
+                const result = await axios.post('http://127.0.0.1:4000/api/v1/form/upload', {
+                    file, imageType: "passport", formId
+                }, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                });
+                console.log(result.data);
+                setActive("other");
+            } catch (err) {
+                if (axios.isAxiosError(err) && err.response) {
+                    setError(err.response.data.message || 'An unexpected error occurred during photo upload');
+                } else {
+                    setError('An unexpected error occurred during photo upload');
+                }
+                console.error('Error during photo upload:', err);
+            }
+        };
 
     return (
         <>
@@ -168,8 +206,8 @@ const PersonalDetailsForm: React.FC<PersonalDetailsFormProps> = ({ setActive }) 
                             <div className="col-span-full">
                                 <label htmlFor="photo" className="text-sm">Photo</label>
                                 <div className="flex items-center space-x-2">
-                                    {photo ? (
-                                        <img src={URL.createObjectURL(photo)} alt="" className="w-10 h-10 rounded-full bg-gray-300" />
+                                    {file ? (
+                                        <img src={URL.createObjectURL(file)} alt="" className="w-10 h-10 rounded-full bg-gray-300" />
                                     ) : (
                                         <img src="https://source.unsplash.com/30x30/?random" alt="" className="w-10 h-10 rounded-full bg-gray-300" />
                                     )}
@@ -179,7 +217,7 @@ const PersonalDetailsForm: React.FC<PersonalDetailsFormProps> = ({ setActive }) 
                                         accept="image/*"
                                         onChange={(e) => {
                                             if (e.target.files && e.target.files[0]) {
-                                                setPhoto(e.target.files[0]);
+                                                setFile(e.target.files[0]);
                                             }
                                         }}
                                         className="px-4 py-2 border rounded-md border-gray-300"

@@ -52,7 +52,7 @@ const RegisterPage: React.FC = () => {
 
         try {
             setIsLoading(true);
-            const response = await axios.post('http://192.168.100.131:4000/api/v1/user/register', {
+            const response = await axios.post('http://127.0.0.1:4000/api/v1/user/register', {
                 phone,
                 email,
                 password,
@@ -86,7 +86,7 @@ const RegisterPage: React.FC = () => {
                 <img src={require("../../assets/logo.png")} alt='logo' className='w-32 h-32 absolute left-4 top-4 object-cover' />
             </div>
 
-         
+
             <p ref={errRef} className={error ? "text-red-500" : "text-green-500"} aria-live="assertive">{error}</p>
 
             <div className='mb-6 text-3xl font-bold'>
@@ -208,7 +208,7 @@ const RegisterPage: React.FC = () => {
                 <button
                     type='submit'
                     className='w-full items-center bg-[#72c053] text-white lg:w-[400px] py-2 rounded-md text-lg font-bold shadow-lg'
-                    // disabled={!validEmail || !validPhone || !validUsername || !validPwd || !validMatch || isLoading}
+                // disabled={!validEmail || !validPhone || !validUsername || !validPwd || !validMatch || isLoading}
                 >
                     {isLoading ? 'Loading...' : 'Sign Up'}
                 </button>
