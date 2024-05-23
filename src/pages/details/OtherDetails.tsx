@@ -57,7 +57,7 @@ const OtherDetailsForm: React.FC<OtherDetailsFormProps> = ({ setActive }) => {
                     formData.append('formId', ""); // Replace with actual form ID
                     formData.append('imageType', key);
 
-                    await axios.post('http://127.0.0.1:4000/api/v1/image/upload', formData, {
+                    await axios.post('http://13.60.77.227:4000/api/v1/image/upload', formData, {
                         headers: {
                             'Content-Type': 'multipart/form-data'
                         }

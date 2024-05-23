@@ -76,7 +76,7 @@ const PersonalDetailsForm: React.FC<PersonalDetailsFormProps> = ({ setActive }) 
             if (!file) return;
 
             try {
-                const result = await axios.post('http://127.0.0.1:4000/api/v1/form/upload', {
+                const result = await axios.post('http://13.60.77.227:4000/api/v1/form/upload', {
                     file, imageType: "passport", formId
                 }, {
                     headers: {

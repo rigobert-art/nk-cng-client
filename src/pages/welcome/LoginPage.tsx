@@ -20,7 +20,7 @@ const Login = () => {
     try {
     
         // Make the actual API call when the server is working
-      const response = await axios.post('http://127.0.0.1:4000/api/v1/user/login', {
+      const response = await axios.post('http://13.60.77.227:4000/api/v1/user/login', {
           email,
           password,
         });
