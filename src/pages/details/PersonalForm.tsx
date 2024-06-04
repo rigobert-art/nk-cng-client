@@ -5,7 +5,7 @@ import axios from 'axios';
 import { FaCircleInfo } from 'react-icons/fa6';
 import validator from 'validator';
 
-const RegisterPage: React.FC = () => {
+const PersonalForm: React.FC = () => {
     const emailRef = useRef<HTMLInputElement>(null);
     const errRef = useRef<HTMLInputElement>(null);
 
@@ -385,4 +385,4 @@ const RegisterPage: React.FC = () => {
     );
 }
 
-export default RegisterPage;
+export default PersonalForm;
