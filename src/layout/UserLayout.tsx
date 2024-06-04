@@ -8,9 +8,9 @@ import { useAuth } from '../context/AuthProvider';
 const MainLayout = () => {
   const { user } = useAuth();
 
-  if (!user || !user.token){
-    return <Navigate to="/login" replace={true} />;
-  }
+  // if (!user || !user.token){
+  //   return <Navigate to="/login" replace={true} />;
+  // }
   return (
     <div className='overflow-auto h-screen w-full'>
         <Outlet/>

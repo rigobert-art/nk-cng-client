@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { MdEdit } from "react-icons/md";
-import { radios } from '../../constants/dummy';
+import { radios } from '../constants/dummy';
 import Header from './Header';
 import { useAuth } from '../../context/AuthProvider';
 import { useAppContext } from '../../context/AppProvider';
@@ -29,18 +29,18 @@ const PayPage: React.FC = () => {
 
   }
 
-  const handleAmountChange = async(e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleAmountChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setAmount(Number(e.target.value));
     // sendSMS("+255755481857", `UNALIPA KIWANGO CHA TZS ${amount}`)
 
-    try{
-        const response = await axios.post("http://127.0.0.1:4000/api/v1/payment/make", 
+    try {
+      const response = await axios.post("http://127.0.0.1:4000/api/v1/payment/make",
         {
           name, number, expire, security
         })
-        
+
       setIsLoading(true)
-    }catch{
+    } catch {
 
     }
   }
