@@ -1,44 +1,42 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-
-const Welcome = () => {
+export default () => {
   return (
-    <section className="w-full h-screen flex flex-col overflow-hidden items-center justify-center px-4">
-      <div className="lg:w-[600px] mx-auto justify-center items-center text-center">
-        <div className="mb-8 text-nowrap text-left">
-          <h1 className="text-2xl text-[#72c053] font-extrabold mb-6">NK's CNG Automotive Loan!</h1>
-          <p className="text-sm font-serif text-gray-900 text-wrap mb-8">
-            Loan provided by NK CNG Automotive Limited to help you do conversion of
-            your car from fuel to CNG gas.
-
+    <div className=" bg-green-600 mx-auto h-screen ">
+      <header>
+        <nav className="items-center pt-2 px-4 mx-auto max-w-screen-xl sm:px-8 sm:flex sm:space-x-6">
+          <a href="javascript:void(0)">
+            <img
+              src={require("../../assets/logo.png")}
+              width={120}
+              height={50}
+              alt="Float UI logo"
+            />
+          </a>
+          
+        </nav>
+      </header>
+      <section className="mt-12 mx-auto max-w-screen-xl pb-12 px-4 items-center lg:flex md:px-8">
+        <div className="flex-1 text-center mt-7 lg:mt-0 mb-8 lg:ml-3">
+          <img src="https://i.postimg.cc/HxHyt53c/undraw-heatmap-uyye.png" className="w-full mx-auto sm:w-10/12  lg:w-full" />
+        </div>
+        <div className="space-y-4 flex-1 sm:text-center lg:text-left">
+          <h1 className="dark:text-white font-bold text-4xl xl:text-5xl">
+            One page Template for
+            <span className="text-green-400"> Digital agency</span>
+          </h1>
+          <p className="text-gray-300 max-w-xl leading-relaxed sm:mx-auto lg:ml-0">
+            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum
           </p>
-        </div>
-
-        <div className='flex justify-center gap-x-8'>
-          <div>
-
-            <Link to="/details" className="bg-[#72c053] text-white rounded-md shadow-lg px-[48px] py-[12px] text-lg font-bold">
-              Welcome
-            </Link>
-          </div>
-
-          <div className=''>
-            <Link
-              to="/login"
-              title="Login"
-              className="py-[12px] px-[32px] rounded-lg border-[#72c053] border-2 text-lg font-bold shadow-lg"
-              role="button"
-            >
-              Log In
-            </Link>
+          <div className="pt-10 items-center justify-center space-y-3 sm:space-x-6 sm:space-y-0 sm:flex lg:justify-start">
+            <a href="#" className="px-7 py-3 w-full dark:bg-white bg-green-600 text-white dark:text-gray-800 text-center rounded-md shadow-md block sm:w-auto">
+              Apply for a Loan
+            </a>
+            <a href="/login" className="px-7 py-3 w-full bg-gray-700 text-gray-200 text-center rounded-md block sm:w-auto">
+              Login to your account
+            </a>
           </div>
         </div>
-
-      </div>
-      <div className='mt-12 bg-[#72c053] shadow-lg rounded-3xl'>
-        <img src={require("../../assets/gas.png")} alt="welcome" className="w-full h-full object-center px-8 py-8" />
-      </div>
-    </section>
-  );
-};
-export default Welcome;
+       
+      </section>
+    </div>
+  )
+}

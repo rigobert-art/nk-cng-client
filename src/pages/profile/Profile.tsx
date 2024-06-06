@@ -1,118 +1,76 @@
-import React, { useContext, useState } from 'react';
+import React from 'react';
 import { useAuth } from '../../context/AuthProvider';
+import Header from './Header';
+import { MdAdd, MdDashboard, MdHelpOutline, MdPayment } from 'react-icons/md';
 
-import { MdAdd, MdDashboard, MdHelpOutline, MdPayment } from "react-icons/md";
-import { FaSquareWhatsapp, FaSquareFacebook, FaSquareXTwitter } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
-
+import { FiClipboard, FiEye, FiPaperclip, FiPhone } from 'react-icons/fi';
+import { AiFillMoneyCollect, AiFillWallet } from 'react-icons/ai';
+import { FcOnlineSupport } from 'react-icons/fc';
 
 export const Profile = () => {
   const { login, logout } = useAuth();
 
+  const list = [
+    {
+      id: 1,
+      icon: <FiClipboard />,
+      title: 'Loan Apply',
+    },
+    {
+      id: 2,
+      icon: <AiFillWallet />,
+      title: 'Pay Loan',
+    },
+    {
+      id: 3,
+      icon: <AiFillMoneyCollect />,
+      title: 'Liquidation',
+    },
+    {
+      id: 4,
+      icon: <FiPaperclip />,
+      title: 'Letter from the Local Government',
+    },
+    {
+      id: 5,
+      icon: <FiPaperclip />,
+      title: 'Letter from the Local Sponsor',
+    },
+    {
+      id: 6,
+      icon: <FiPhone />,
+      title: 'Contact Support',
+    },
+    {
+      id: 7,
+      icon: <FiEye />,
+      title: 'Reset Password',
+    },
+    // {
+    //   id: 8,
+    //   icon: <MdPayment />,
+    //   title: '',
+    // },
+  ];
+
   return (
     <>
       <Header />
-
       <main className='max-w-screen-xl mx-auto mt-8 px-6 sm:px-8 md:px-12 lg:px-24'>
-        <div className=''>
-          <div className='flex space-x-2 w-[900px] align-middle'>
-
-            <MdAdd className='border-2 w-12 h-12 rounded-lg border-black bg-gray-400' />
-
-            <div className='border-2 border-black bg-gray-100 w-72 rounded-md'></div>
-            
-           
-          </div>
-
-          <div className='mt-8 text-wrap mx-auto '>
-            <h1 className='text-lg font-bold mb-2'>Invite a Friend</h1>
-            <p className='text-xs'>Invite other users to earn your referral discounts upto 20%</p>
-            <div className='mt-4 mb-4'>
-              <input type='text' placeholder='https://example.to/uIsZL3QpbZ1' className='text-xs border-2 rounded-md px-4 py-2 w-full h-14' />
-              <button type='button' className='bg-gray-200 px-4 py-2 rounded-md -ml-24 h-10'>
-                <p className='font-bold text-xs'>Copy Link</p></button>
+        {list.map((item, index) => (
+          <div className='flex items-center text-md rounded-md border-[1px] mb-6 px-4 py-2 border-gray-300 text-green-800 ' key={index}>
+            <div className='mr-8'>
+              {item.icon}
             </div>
-            <p className='text-xs font-semibold'>Invite other users to earn your referral discounts upto 20%</p>
-
-            <div className='mt-4 flex justify-between'>
-              <p className='text-lg font-bold'>Invite via</p>
-              <div className='flex  gap-x-2'>
-                <FaSquareWhatsapp size={32} />
-                <FaSquareFacebook size={32} />
-                <FaSquareXTwitter size={32} />
-              </div>
-
-            </div>
-
+          
+            <p>{item.title}</p>
           </div>
-
+        ))}
+        <div className='mt-2 item-center rounded-md justify-center text-center bg-gray-600 py-2 text-white'>
+          <span className='text-lg'>Logout</span>
         </div>
-
       </main>
     </>
-  );
-};
-
-
-const Header = () => {
-
-  return (
-    <section className='flex w-full justify-between lg:px-12 items-center h-[220px] bg-[#72c053] text-white font-serif'>
-      <div className=' lg:px-8 text-bold px-6'>
-        <div className='flex text-xs items-center gap-x-1'>
-          <p className=''>@enocrunk </p>
-          <p className='-mt-3 font-bold text-lg'>.</p>
-          <p className='text-gray-300 font-semibold'>Registered Dec 2023</p>
-        </div>
-        <p className='font-bold text-lg mt-2 mb-6'>VINCENT RICHARD</p>
-
-        <div className='flex gap-x-2 text-semibold'>
-          <div className='flex gap-x-1 items-center text-xs'>
-            <p className='text-gray-300'>0</p>
-            <p className='text-gray-800 font-bold'>Balance</p>
-          </div>
-
-          <div className='flex gap-x-1 items-center text-semibold text-xs'>
-            <p className='text-gray-300 '>0</p>
-            <p className='text-gray-800 font-bold'>Paid</p>
-          </div>
-
-          <div className='flex gap-x-1 items-center text-xs'>
-            <p className='text-gray-300 '>1</p>
-            <p className='text-gray-800 font-bold'>Refills</p>
-          </div>
-
-        </div>
-
-        <div className='border-2 w-32 rounded-md px-4 py-2 flex item-center object-fit gap-x-2 mt-4'>
-          <MdAdd />
-          <p className='font-bold text-sm'>Add Bio</p>
-        </div>
-
-
-      </div>
-      <div>
-        <div className='flex items-center px-4 gap-x-4 mt-8'>
-          {/* Navigation Icons */}
-          <Link to="/home" className=' hidden lg:flex gap-x-1 font-bold items-center text-base'>
-            <MdDashboard size={24} />
-            <p>Dashboard</p>
-          </Link>
-          <Link to="/payment" className='hidden lg:flex gap-x-1 font-bold items-center text-base'>
-            <MdPayment size={24} />
-            <p>Payment</p>
-          </Link>
-          <Link to="https://nkcngautomotive.com/contact" className='hidden lg:flex gap-x-1 font-bold items-center text-base'>
-            <MdHelpOutline size={24} />
-            <p>Support</p>
-          </Link>
-
-          {/* Profile Image */}
-          <div className='border-2 p-1 rounded-full mb-12 border-gray-300 '>
-            <img src={require("../../assets/profile.jpg")} alt="profile" className='rounded-full object-center bg-yellow-300 w-12 h-12 ' />
-          </div>
-        </div>
-      </div>
-    </section>
   );
 };

@@ -10,6 +10,9 @@ import { Profile } from './pages/profile/Profile';
 import LoginPage from './pages/welcome/LoginPage';
 // import VehicleForm from './pages/details/VehicleForm';
 import RegisterPage from './pages/welcome/RegisterForm';
+import OTP from './pages/welcome/OTP';
+import Welcome from './pages/welcome/Welcome';
+import PersonalForm from './pages/details/PersonalForm';
 
 function App() {
 
@@ -26,12 +29,15 @@ function App() {
               {/* <Route path='/vehicle' element={<VehicleForm />} /> */}
               <Route path="/profile" element={<Profile />} />
               <Route path="/mthamini" element={<MthaminiForm />} />
+              <Route path="/personal" element={<PersonalForm />} />
             </Route>
             {/* <Route path="/" element={<Welcome />} /> */}
             <Route path="/login" element={<LoginPage />} />
             <Route path="/reset" element={<Reset />} />
             <Route path="/register" element={<RegisterPage />} />
-
+            <Route path='/verify' element={<OTP />} />
+            <Route path='/welcome' element={<Welcome />} />
+            
 
 
           </Routes>

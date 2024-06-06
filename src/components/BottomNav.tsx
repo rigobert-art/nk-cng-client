@@ -28,16 +28,10 @@ const BottomNavBar = () => {
         onClick={() =>  handleTabChange('payment')}
         className={`${activeTab === 'payment' ? 'active flex bg-green-100 py-2 px-4 gap-x-2 rounded-2xl text-green-700 items-center ' : ''}`}>
         <MdPayment size={22} color="green"/>
-        <p className={`${activeTab === 'payment' ? 'text-lg font-bold':'hidden'}`}>Payment</p>
+        <p className={`${activeTab === 'payment' ? 'text-lg font-bold':'hidden'}`}>Loan</p>
       </Link>
 
-      <Link 
-        to="/notifications"
-        onClick={() => handleTabChange('notifications')}
-        className={`${activeTab === 'notifications' ? 'active flex bg-green-100 py-2 px-4 gap-x-2 rounded-2xl text-green-700 items-center ' : ''}`}>
-        <MdNotifications size={22} color='green'/>
-        <p className={`${activeTab === "notifications" ? 'font-semibold text-sm':'hidden'}`}>Notifications</p>
-      </Link>
+      
 
       <Link
         to="/profile"

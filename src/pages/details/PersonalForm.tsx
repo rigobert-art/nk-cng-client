@@ -161,8 +161,8 @@ const PersonalForm: React.FC = () => {
 
                     <div className="col-span-6 mb-2">
                         <label>
-                            <span className="text-sm text-gray-600">Email
-                                <span className="text-red-500">*</span>
+                            <span className="text-sm text-gray-600">Email (Optional)
+                                {/* <span className="text-red-500">*</span> */}
                             </span>
                         </label>
                         <input
@@ -178,7 +178,6 @@ const PersonalForm: React.FC = () => {
                             className="px-4 py-2 text-black text-sm border-2 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-green-500"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            required
                         />
                         <p id="email-error" className={emailFocus && email ? "font-sm border-2 bg-black text-white p-1 relative bottom-[-10px]" : "absolute left-[-9999px]"}>
                             <FaCircleInfo className="inline-block mr-1" />
