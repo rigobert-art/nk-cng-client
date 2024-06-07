@@ -12,7 +12,7 @@ const HomePage = () => {
       <main className='max-w-screen-xl mx-auto -mt-10 overflow-auto px-6 sm:px-8 md:px-12 font-serif lg:px-24'>
      
         <div className='mt-12'>
-          </div>
+
 
         <div className='mt-12'>
           <h1 className='text-lg font-semibold'>Payment History</h1>
@@ -42,6 +42,7 @@ const HomePage = () => {
               <div className='font-bold text-green-700'>TSH 230,000</div>
             </div>
           </div>
+        </div>
         </div>
       </main>
     </>

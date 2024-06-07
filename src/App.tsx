@@ -13,6 +13,10 @@ import RegisterPage from './pages/welcome/RegisterForm';
 import OTP from './pages/welcome/OTP';
 import Welcome from './pages/welcome/Welcome';
 import PersonalForm from './pages/details/PersonalForm';
+import LoanPage from './pages/loans/LoanPage';
+import ViewLoan from './pages/loans/ViewLoan';
+import LoanLayout from './layout/LoanLayout';
+import VehicleForm from './pages/details/VehicleForm';
 
 function App() {
 
@@ -24,12 +28,18 @@ function App() {
             <Route element={<MainLayout />}>
               <Route path="/" element={<Home />} />
               <Route path="/home" element={<Home />} />
-              <Route path="/payment" element={<PayPage />} />
+              <Route path="/pay" element={<PayPage />} />
+              <Route path="/loans" element={<LoanPage/>} />
+              <Route path="/loan/view" element={<ViewLoan /> } />
               <Route path="/notifications" element={<Notifications />} />
-              {/* <Route path='/vehicle' element={<VehicleForm />} /> */}
               <Route path="/profile" element={<Profile />} />
-              <Route path="/mthamini" element={<MthaminiForm />} />
+            
+            </Route>
+            <Route element={<LoanLayout />}>
+              <Route path="/contract" element={<PersonalForm />} />
               <Route path="/personal" element={<PersonalForm />} />
+              <Route path="/guarantor" element={<MthaminiForm />} />
+              <Route path="/Vehicle" element={<VehicleForm />} />
             </Route>
             {/* <Route path="/" element={<Welcome />} /> */}
             <Route path="/login" element={<LoginPage />} />

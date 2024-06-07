@@ -24,7 +24,7 @@ const BottomNavBar = () => {
       </Link>
 
       <Link 
-        to="/payment"
+        to="/loans"
         onClick={() =>  handleTabChange('payment')}
         className={`${activeTab === 'payment' ? 'active flex bg-green-100 py-2 px-4 gap-x-2 rounded-2xl text-green-700 items-center ' : ''}`}>
         <MdPayment size={22} color="green"/>

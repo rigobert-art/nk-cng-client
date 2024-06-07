@@ -1,47 +1,59 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import Header from './Header';
+import { FiArrowRight, } from 'react-icons/fi';
+import axios from 'axios'
+import ViewLoan from './ViewLoan';
+import { useNavigate } from 'react-router-dom';
+
+
+interface Loan{
+    id: number
+    loan_type: string,
+    // total_loan: string,
+    // duration: string,
+    balance: string
+ }
+
+const loans: Loan[] = [
+    { id: 1, loan_type: 'NK CNG Automotive Loan', balance: "20000" },
+  
+];
+// const navigate = useNavigate()
+
+// const [ selectedLoan, setSelectedLoan ] = useState<Loan | null>()
+
+const handleSelectedLoan = () => {
+    // setSelectedLoan(loan)    
+    // navigate("/loan/view")
+
+}   
+
+
 
 const LoanPage = () => {
-  return (
-      <main className='max-w-screen-xl mx-auto -mt-10 overflow-auto px-6 sm:px-8 md:px-12 font-serif lg:px-24'>
-          <div className='my-6 rounded-md shadow-md bg-gray-100 mx-auto p-12'>
-              <div className='flex flex-1 justify-between items-center mb-4'>
-                  <div>
-                      <p className='font-base text-sm text-gray-400'>Amount</p>
-                      <p className='text-lg font-bold'>TZS 104,992,000</p>
-                  </div>
-                  <div className=''>
-                      <p className='font-base text-sm text-gray-400'>Duration</p>
-                      <p className='text-lg font-bold'>7 months</p>
-                  </div>
-                  <div></div>
-              </div>
+    return (
+        <>
+            <Header />
+            <main className='max-w-screen-xl mx-auto mt-10 overflow-auto px-6 sm:px-8 md:px-12 font-serif lg:px-24'>
+                <div className='mb-4'>
+                  
+                    <p className='text-gray-500 text-base '>All Loans</p>
 
-              <div className='flex flex-1 justify-between items-center mb-4'>
-                  <div>
-                      <p className='font-base text-sm text-gray-400'>Monthly Pament</p>
-                      <p className='text-lg font-bold'>TZS 104,992,000</p>
-                  </div>
-                  <div>
-                      <p className='font-base text-sm text-gray-400'>Payment day</p>
-                      <p className='text-lg font-bold'>24/10/2024</p>
-                  </div>
-                  <div></div>
-              </div>
-
-              <div className='flex flex-1 justify-between items-center mb-2'>
-                  <div>
-                      <p className='font-base text-sm text-gray-400'>Balance</p>
-                      <p className='text-lg font-bold'>TZS 104,992,000</p>
-                  </div>
-                  <div>
-                      <p className='font-base text-sm text-gray-400'>Payment day</p>
-                      <p className='text-lg font-bold'>24/10/2024</p>
-                  </div>
-                  <div></div>
-              </div>
-              </div>
-              </main>
-  )
+                </div>
+        
+                {loans.map((loan, index) => (
+                    <div  className='flex w-full justify-between items-center text-md rounded-md border-[1px] mb-6 px-4 py-2 border-gray-300 text-green-800' key={index}>
+                        <div className='mr-8'>
+                            <p className='flex-grow text-xs md:text-sm'>{loan.loan_type}</p>
+                            <p className='font-bold text-2xl ml-2'>{loan.balance}</p>
+                        </div>
+                        
+                        <FiArrowRight className='w-8 h-8' onClick={handleSelectedLoan} />
+                    </div>
+                ))}
+            </main>
+        </>
+    );
 }
 
-export default LoanPage
+export default LoanPage;

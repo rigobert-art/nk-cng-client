@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { FiArrowLeft, FiTool } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 
 interface Vehicle {
     make: string;
@@ -63,8 +65,21 @@ const VehicleForm: React.FC = () => {
             <form onSubmit={handleSubmit} className='container flex flex-col mx-auto space-y-12 mb-12 px-4'>
                 <p className={error ? "text-red-500" : "text-green-500"} aria-live="assertive">{error}</p>
 
-                <div className="space-y-2 col-span-full lg:col-span-1 text-center mb-12 mt-24">
-                    <h1 className="mb-2 font-bold text-lg">Vehicle Information Form</h1>
+                <div className=''>
+                    {/* back button goes here */}
+                    <FiArrowLeft className='w-4 h-4 relative *:top-10 *:left-10' />
+                    {/* title of the form is passed here */}
+                    <div className='flex flex-col px-12 md:items-center justify-center'>
+                        <Link to="/guarantor" className='bg-green-700 w-24 h-32 rounded-lg '>
+                            <FiTool className='text-white w-16 h-20 m-auto mt-10 cursor-pointer' />
+                        </Link>
+                        <h1 className='text-2xl font-bold'>Vehicle Details</h1>
+                        <p className='text-gray-500'>Please fill out the form below</p>
+                        <div className='w-[196px] mt-2  bg-gray-300 h-[4px] rounded-md overflow-hidden'>
+                            <div className='bg-green-500 h-full' style={{ width: `${90}%` }}></div>
+                        </div>
+                    </div>
+ 
                 </div>
 
                 <div className='border-[1px] shadow-md rounded-md grid grid-cols-6 gap-4 col-span-full lg:col-span-3 p-6'>

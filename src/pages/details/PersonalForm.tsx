@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FaCircleInfo } from 'react-icons/fa6';
 import validator from 'validator';
+import { FiArrowLeft, FiUser } from 'react-icons/fi';
 
 const PersonalForm: React.FC = () => {
     const emailRef = useRef<HTMLInputElement>(null);
@@ -106,10 +107,24 @@ const PersonalForm: React.FC = () => {
         <section>
             <form onSubmit={handleSubmit} className='container flex flex-col mx-auto space-y-12 mb-12 px-4'>
                 <p ref={errRef} className={error ? "text-red-500" : "text-green-500"} aria-live="assertive">{error}</p>
+                <div className=''>
+                    {/* back button goes here */}
+                    <FiArrowLeft className='w-4 h-4 relative *:top-10 *:left-10' />
+                    {/* title of the form is passed here */}
+                    <div className='flex flex-col px-12 md:items-center justify-center'>
+                        <div className='bg-green-700 w-24 h-32 rounded-lg '>
+                            <FiUser className='text-white w-16 h-20 m-auto mt-10' />
+                        </div>
+                        <h1 className='text-2xl font-bold'>Personal Details</h1>
+                        <p className='text-gray-500'>Please fill out the form below</p>
+                        <div className='w-[196px] mt-2  bg-gray-300 h-[4px] rounded-md overflow-hidden'>
+                            <div className='bg-green-500 h-full' style={{ width: `${30}%` }}></div>
+                        </div>
+                    </div>
+                    {/* user icon goes here */}
 
-                <div className="space-y-2 col-span-full lg:col-span-1 text-center mb-12 mt-24">
-                    <h1 className="mb-2 font-bold text-lg">Loan request form</h1>
-                    <p className="text-medium">Fill out this loan form and </p>
+
+
                 </div>
 
                 <div className='grid grid-cols-6 gap-4 col-span-full lg:col-span-3 p-6'>
