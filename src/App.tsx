@@ -17,6 +17,7 @@ import LoanPage from './pages/loans/LoanPage';
 import ViewLoan from './pages/loans/ViewLoan';
 import LoanLayout from './layout/LoanLayout';
 import VehicleForm from './pages/details/VehicleForm';
+import ContractTerms from './pages/details/LoanBreakdown';
 
 function App() {
 
@@ -36,7 +37,7 @@ function App() {
             
             </Route>
             <Route element={<LoanLayout />}>
-              <Route path="/contract" element={<PersonalForm />} />
+              <Route path="/contract" element={<ContractTerms />} />
               <Route path="/personal" element={<PersonalForm />} />
               <Route path="/guarantor" element={<MthaminiForm />} />
               <Route path="/Vehicle" element={<VehicleForm />} />

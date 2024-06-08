@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import profileImage from '../../assets/profile.jpg';
-import { FiClipboard, FiEye, FiEyeOff, FiArrowLeft, FiArrowRight } from 'react-icons/fi';
+import { FiClipboard, FiEye, FiEyeOff, FiArrowLeft, FiArrowRight, FiAirplay, FiPaperclip } from 'react-icons/fi';
+import { useAuth } from '../../context/AuthProvider';
 
 interface NavItem {
     name: string;
@@ -12,11 +13,13 @@ interface NavItem {
 const Header: React.FC = () => {
     const first_name = "John"; // Placeholder for first name
     const loan_balance = "2000000"; // Placeholder for loan balance
+    const { user } = useAuth();
+    const navigate = useNavigate();
 
     const nav: NavItem[] = [
-        { name: 'Apply Loan', icon: <FiClipboard />, link: "/loans" },
-        { name: 'Pay Loan', icon: <FiEye />, link: "/pay" },
-        { name: 'Agreement', icon: <FiEye />, link: "/contract" }
+        { name: 'Apply Loan', icon: <FiClipboard size={24}/>, link: "/personal" },
+        { name: 'Pay Loan', icon: <FiAirplay size={24}/>, link: "/pay" },
+        { name: 'Agreement', icon: <FiPaperclip size={24}/>, link: "/contract" }
     ];
 
     const [currentCard, setCurrentCard] = useState(0);
@@ -41,12 +44,12 @@ const Header: React.FC = () => {
     ];
 
     return (
-        <header className="max-w-screen-full mx-auto bg-green-700 text-white overflow-hidden h-[360px] md:h-[230px] px-6 sm:px-8 md:px-12 font-serif lg:px-24">
+        <header className="max-w-screen-full mx-auto bg-[#72c053] text-white overflow-hidden h-[360px] md:h-[230px] px-6 sm:px-8 md:px-12 font-serif lg:px-24">
             <div className="lg:px-8 font-bold m-4">
                 <div className='flex justify-between mb-6 items-center'>
                     <div>
-                        <p>Welcome,</p>
-                        <span>{first_name}</span>
+                        <p className='text-base'>Welcome,</p>
+                        <span className='text-xl'>{user?.name}</span>
                     </div>
                     <div className='md:flex space-x-4 items-center'>
                         <nav className='hidden md:flex gap-x-2 items-center'>
@@ -56,13 +59,15 @@ const Header: React.FC = () => {
                                 </Link>
                             ))}
                         </nav>
-                        <img src={profileImage} alt="profile" className="rounded-full object-center bg-yellow-300 w-8 h-8 md:w-12 md:h-12" />
+                        <img onClick= {() => {
+                            navigate("/profile")
+                        }} src={profileImage} alt="profile" className="rounded-full object-center bg-yellow-300 w-12 h-12 md:w-12 mr-2 cursor-pointer" />
                     </div>
                 </div>
                 <div className='relative flex flex-col md:flex-row gap-x-4 justify-center'>
                     <FiArrowLeft onClick={handlePrevCard} className='md:hidden absolute left-2 w-6 h-6 cursor-pointer' />
                     {cardDetails.map((card, index) => (
-                        <div key={index} className={`${currentCard === index ? 'block' : 'hidden'} md:flex border-[1px] rounded-lg items-center justify-center bg-green-600 shadow-md px-4 py-2 w-full md:w-auto`}>
+                        <div key={index} className={`${currentCard === index ? 'block' : 'hidden'} md:flex border-[1px] rounded-lg items-center justify-center bg-green-500 shadow-md px-4 py-2 w-full md:w-auto`}>
                             <div className='px-4 py-2'>
                                 <div className="flex justify-between items-center">
                                     <p className="text-gray-600 text-center">
@@ -72,14 +77,14 @@ const Header: React.FC = () => {
                                         {showAmounts ? <FiEyeOff className="inline" /> : <FiEye className="inline" />}
                                     </button>
                                 </div>
-                                <p className='text-3xl text-center mt-4'>
+                                <p className='text-4xl text-center mt-4'>
                                     {showAmounts ? `TZS ${card.amount}` : '****'}
                                 </p>
-                                <div className='mt-8 md:hidden border-[1px] mb-12'></div>
+                                <div className='mt-8 md:hidden border-[1px] mb-8'></div>
                                 <div className="flex md:hidden flex-wrap justify-center gap-x-8">
                                     {nav.map((item, key) => (
                                         <Link key={key} to={item.link} className="text-center text-gray-600">
-                                            <button className='bg-orange-400 px-2 py-2 rounded-md'>
+                                            <button className='bg-white px-4 py-4 rounded-md'>
                                                 {item.icon}
                                             </button>
                                             <p className="text-xs mt-[4px]">{item.name}</p>

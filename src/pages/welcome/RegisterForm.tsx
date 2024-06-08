@@ -8,12 +8,12 @@ import { FaCircleInfo } from 'react-icons/fa6';
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};:"\\|,.<>\/?]).{8,24}$/;
 
 const RegisterForm: React.FC = () => {
-    const emailRef = useRef<HTMLInputElement>(null);
+    const nameRef = useRef<HTMLInputElement>(null);
     const phoneRef = useRef<HTMLInputElement>(null);
     const errRef = useRef<HTMLInputElement>(null);
 
-    const [email, setEmail] = useState('');
-    const [emailFocus, setEmailFocus] = useState(false);
+    const [name, setName] = useState('');
+    const [nameFocus, setNameFocus] = useState(false);
 
     const [phone, setPhone] = useState('');
     const [phoneFocus, setPhoneFocus] = useState(false);
@@ -38,7 +38,7 @@ const RegisterForm: React.FC = () => {
 
     useEffect(() => {
         setError('');
-    }, [email, phone, password, matchPwd]);
+    }, [name, phone, password, matchPwd]);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -52,20 +52,32 @@ const RegisterForm: React.FC = () => {
 
         try {
             setIsLoading(true);
-            const response = await axios.post('https://13.60.77.227:4000/api/v1/user/register', {
+            const response = await axios.post('http://127.0.0.1:4000/api/v1/user/register', {
                 phone,
-                email,
+                name,
                 password,
             });
-
+            
+            console.log(response.data.status);
+            console.log(typeof(response.data.status));
 
             if (response.data.status === 'error') {
                 setError(response.data.message);
                 setIsLoading(false);
+
+                // return an alert
                 return;
+
             }
 
-            navigate('/verify');
+            if (response.data.status === 200) {
+                setError('');
+                setIsLoading(false);
+                console.log(response.data.message);
+                navigate('/verify', { state: { phone } });
+            }
+
+            
         } catch (err) {
             if (axios.isAxiosError(err) && err.response) {
                 // Error from the server
@@ -96,35 +108,35 @@ const RegisterForm: React.FC = () => {
             <form onSubmit={handleSubmit} className='w-full mb-4 px-2'>
                 <div className="mb-2">
                     <label>
-                        <span className="text-sm text-gray-600">Email
-                            <span className="text-red-500">*</span>
+                        <span className="text-sm text-gray-600">Name
+                            <span className={` ${ name ? "text-green-500": "text-red-500"}`}>*</span>
                         </span>
                     </label>
                     <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        placeholder="Enter your email"
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Enter your name"
                         autoComplete="off"
-                        ref={emailRef}
-                        aria-describedby="email-error"
-                        onFocus={() => setEmailFocus(true)}
-                        onBlur={() => setEmailFocus(false)}
+                        ref={nameRef}
+                        aria-describedby="name-error"
+                        onFocus={() => setNameFocus(true)}
+                        onBlur={() => setNameFocus(false)}
                         className="px-4 py-2 text-black text-sm border-2 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-green-500"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
                         required
                     />
-                    <p id="email-error" className={emailFocus && email ? "font-sm border-2 bg-black text-white p-1 relative bottom-[-10px]" : "absolute left-[-9999px]"}>
+                    <p id="name-error" className={nameFocus && name ? "font-sm border-2 bg-black text-white p-1 relative bottom-[-10px]" : "absolute left-[-9999px]"}>
                         <FaCircleInfo className="inline-block mr-1" />
-                        Must be a valid email address.
+                        Must be a valid name address.
                     </p>
                 </div>
 
                 <div className="mb-2">
                     <label>
                         <span className="text-sm text-gray-600">Phone Number(TZ)
-                            <span className="text-red-500">*</span>
+                            <span className={` ${phone ? "text-green-500" : "text-red-500"}`}>*</span>
                         </span>
                     </label>
                     <input
@@ -208,7 +220,7 @@ const RegisterForm: React.FC = () => {
                 <button
                     type='submit'
                     className='w-full items-center bg-[#72c053] text-white lg:w-[400px] py-2 rounded-md text-lg font-bold shadow-lg'
-                // disabled={!validEmail || !validPhone || !validUsername || !validPwd || !validMatch || isLoading}
+                // disabled={!validname || !validPhone || !validUsername || !validPwd || !validMatch || isLoading}
                 >
                     {isLoading ? 'Loading...' : 'Sign Up'}
                 </button>

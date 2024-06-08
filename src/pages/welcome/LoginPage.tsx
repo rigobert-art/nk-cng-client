@@ -6,7 +6,7 @@ import { useAuth } from '../../context/AuthProvider';
 import { useAppContext } from '../../context/AppProvider';
 
 const Login = () => {
-  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const { login } = useAuth();
@@ -16,12 +16,12 @@ const Login = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    console.log(email)
+    console.log(phone)
     try {
     
         // Make the actual API call when the server is working
-      const response = await axios.post('http://13.60.77.227:4000/api/v1/user/login', {
-          email,
+      const response = await axios.post('http://127.0.0.1:4000/api/v1/user/login', {
+          phone,
           password,
         });
 
@@ -29,7 +29,8 @@ const Login = () => {
           token: response.data.token,
           id: response.data.user._id,
           phone: response.data.user.phone,
-          email: response.data.user.email,
+          name: response.data.user.name,
+          verified: response.data.user.account_verified
         });
         console.log(response.data.user._id)
         // console.log(login)
@@ -71,13 +72,13 @@ const Login = () => {
 
         <div className="mb-4">
           <input
-            type="text"
-            id="email"
-            name="email"
-            placeholder="Enter your email or phone number"
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="phone number"
             className="px-4 py-2 text-black text-sm border-2 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-green-500"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
             required
 
           />

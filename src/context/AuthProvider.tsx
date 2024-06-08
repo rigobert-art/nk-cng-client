@@ -3,9 +3,11 @@ import React, { createContext, useState, useContext, useEffect } from 'react';
 
 interface User {
   id: string;
-  email: string;
+  name: string;
   phone: string;
   token: string;
+  verified: boolean;
+  // Add other user properties as needed
 }
 
 interface AuthContextType {

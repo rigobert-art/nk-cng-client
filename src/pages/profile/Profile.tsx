@@ -67,7 +67,7 @@ export const Profile = () => {
             <p>{item.title}</p>
           </div>
         ))}
-        <div className='mt-2 item-center rounded-md justify-center text-center bg-gray-600 py-2 text-white'>
+        <div onClick={logout} className='mt-2 item-center rounded-md justify-center text-center bg-gray-600 py-2 text-white'>
           <span className='text-lg'>Logout</span>
         </div>
       </main>

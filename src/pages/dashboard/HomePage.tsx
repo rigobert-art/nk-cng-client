@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { MdPendingActions } from "react-icons/md";
 import { GiPayMoney } from "react-icons/gi";
 import Header from './Header';
+import { useAuth } from '../../context/AuthProvider';
 
 const HomePage = () => {
   const [currentSkill, setCurrentSkill] = useState({ title: 'progress', percent: 10 });
+  const { user } = useAuth();
 
   return (
     <>
