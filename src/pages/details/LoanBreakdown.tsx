@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useFormContext } from '../../context/FormProvider';
+import { useAppContext } from '../../context/AppProvider';
 
 const ContractTerms: React.FC = () => {
     const [language, setLanguage] = useState<'EN' | 'SW'>('EN');
     const [accepted, setAccepted] = useState(false);
     const navigate = useNavigate();
+    const { setFormId } = useFormContext();
+    const { setIsLoading } = useAppContext();
 
     const terms = {
         EN: {
@@ -94,7 +98,11 @@ const ContractTerms: React.FC = () => {
 
     const handleAccept = async () => {
         try {
-            await axios.post('http://localhost:4000/api/v1/user/accept-terms', { accepted: true });
+            const response = await axios.post('http://localhost:4000/api/v1/user/accept-terms', { accepted: true });
+            console.log(response.data);
+            console.log('Form ID:', response.data.formId);
+            setIsLoading(true);
+            setFormId(response.data.formId);
             navigate('/personal');
         } catch (error) {
             console.error('Error accepting terms:', error);

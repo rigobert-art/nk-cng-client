@@ -5,6 +5,7 @@ import axios from 'axios';
 import { FaCircleInfo } from 'react-icons/fa6';
 import validator from 'validator';
 import { FiArrowLeft, FiUser } from 'react-icons/fi';
+import { useFormContext } from '../../context/FormProvider';
 
 const PersonalForm: React.FC = () => {
     const emailRef = useRef<HTMLInputElement>(null);
@@ -35,6 +36,12 @@ const PersonalForm: React.FC = () => {
     const navigate = useNavigate();
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+
+    const { formId } = useFormContext();
+
+    if (!formId) {
+        navigate('/contract');
+    }
 
     useEffect(() => {
         setError('');
