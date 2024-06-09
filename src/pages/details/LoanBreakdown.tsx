@@ -3,13 +3,16 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useFormContext } from '../../context/FormProvider';
 import { useAppContext } from '../../context/AppProvider';
+import {useAuth} from '../../context/AuthProvider';
 
 const ContractTerms: React.FC = () => {
     const [language, setLanguage] = useState<'EN' | 'SW'>('EN');
     const [accepted, setAccepted] = useState(false);
     const navigate = useNavigate();
     const { setFormId } = useFormContext();
-    const { setIsLoading } = useAppContext();
+    const { setIsLoading, isLoading } = useAppContext();
+
+    const { user  } = useAuth();
 
     const terms = {
         EN: {
@@ -97,13 +100,20 @@ const ContractTerms: React.FC = () => {
     };
 
     const handleAccept = async () => {
+
+      
         try {
-            const response = await axios.post('http://localhost:4000/api/v1/user/accept-terms', { accepted: true });
+            const response = await axios.post('http://localhost:4000/api/v1/form/accept-terms', { userId: user?.id, accepted: true });
             console.log(response.data);
-            console.log('Form ID:', response.data.formId);
+            console.log(response.data.status);
             setIsLoading(true);
-            setFormId(response.data.formId);
-            navigate('/personal');
+            
+            if ( response.data.status === 'Ok'){
+                setIsLoading(false);
+                setFormId(response.data.formId);
+                navigate('/personal');
+            }
+        
         } catch (error) {
             console.error('Error accepting terms:', error);
         }
@@ -111,9 +121,23 @@ const ContractTerms: React.FC = () => {
 
     return (
         <div className="p-6">
-            <button onClick={() => setLanguage(language === 'EN' ? 'SW' : 'EN')} className="mb-4 px-4 py-2 bg-blue-500 text-white rounded">
+            <div className="mb-4 w-72">
+                <label className="block text-gray-700 text-sm font-bold mb-2 " htmlFor="language">
+                    Select Language
+                </label>
+                <select
+                    id="language"
+                    value={language}
+                    onChange={() => setLanguage(language === 'EN' ? 'SW' : 'EN')}
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                >
+                    <option value="EN">English</option>
+                    <option value="SW">Swahili</option>
+                </select>
+            </div>
+            {/* <button onClick={() => setLanguage(language === 'EN' ? 'SW' : 'EN')} className="mb-4 px-4 py-2 bg-blue-500 text-white rounded">
                 {language === 'EN' ? 'Switch to Swahili' : 'Switch to English'}
-            </button>
+            </button> */}
             <h1 className="text-2xl font-bold text-[#72c053] mb-8 ml-4">{terms[language].title}</h1>
             {terms[language].types.map((type, index) => (
                 <div key={index} className="mb-6">
@@ -146,7 +170,7 @@ const ContractTerms: React.FC = () => {
                 <label htmlFor="accept">I accept the terms and conditions</label>
             </div>
             <button onClick={handleAccept} disabled={!accepted} className="px-4 py-2 bg-green-500 text-white rounded disabled:bg-gray-400">
-                Accept
+                {isLoading ? 'Loading...' : 'Accept'}
             </button>
         </div>
     );

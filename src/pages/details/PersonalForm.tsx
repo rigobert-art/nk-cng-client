@@ -6,6 +6,8 @@ import { FaCircleInfo } from 'react-icons/fa6';
 import validator from 'validator';
 import { FiArrowLeft, FiUser } from 'react-icons/fi';
 import { useFormContext } from '../../context/FormProvider';
+import { useAppContext } from '../../context/AppProvider';
+
 
 const PersonalForm: React.FC = () => {
     const emailRef = useRef<HTMLInputElement>(null);
@@ -35,14 +37,11 @@ const PersonalForm: React.FC = () => {
 
     const navigate = useNavigate();
     const [error, setError] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
 
-    const { formId } = useFormContext();
+    const { formId, setFormData, formData } = useFormContext();
+    const { isLoading, isError, setIsLoading, setIsError } = useAppContext()
 
-    if (!formId) {
-        navigate('/contract');
-    }
-
+   
     useEffect(() => {
         setError('');
     }, [email, phone, firstName, lastName, nationalId, frontId, backId]);
@@ -78,6 +77,7 @@ const PersonalForm: React.FC = () => {
         formData.append('nationalId', nationalId);
         formData.append('frontId', frontId);
         formData.append('backId', backId);
+        formData.append('formId', formId)
     //     console.log(
     //         phone, email, firstName, lastName, ward, city, postalCode, loanType, cylinderSize,
     //  nationalId, frontId, backId
@@ -85,19 +85,26 @@ const PersonalForm: React.FC = () => {
 
         try {
             setIsLoading(true);
-            const response = await axios.post('http://13.60.77.227:4000/api/v1/form/register', formData, {
+            const response = await axios.post('http://127.0.0.1:4000/api/v1/form/personal', formData, 
+            {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
-            });
+            }
+            );
+            setIsLoading(true);
 
             if (response.data.status === 'error') {
-                setError(response.data.message);
+                setIsError(response.data.message);
                 setIsLoading(false);
                 return;
             }
 
-            navigate('/verify');
+            if (response.data.status === 'Ok') {
+                setIsLoading(false);
+                setFormData({});
+                navigate('/guarantor');
+            }
         } catch (err) {
             if (axios.isAxiosError(err) && err.response) {
                 setError(err.response.data.message || 'An unexpected error occurred');
@@ -109,6 +116,18 @@ const PersonalForm: React.FC = () => {
             setIsLoading(false);
         }
     };
+
+    if (!formId || formId === "") {
+        navigate('/contract');
+    }
+
+    const handleChange = (field: string, value: string | File | null) => {
+        setFormData({
+            ...formData,
+            [field]: value,
+        });
+    }
+
 
     return (
         <section>
@@ -123,7 +142,7 @@ const PersonalForm: React.FC = () => {
                             <FiUser className='text-white w-16 h-20 m-auto mt-10' />
                         </div>
                         <h1 className='text-2xl font-bold'>Personal Details</h1>
-                        <p className='text-gray-500'>Please fill out the form below</p>
+                        <p className='text-gray-500'>{formId}</p>
                         <div className='w-[196px] mt-2  bg-gray-300 h-[4px] rounded-md overflow-hidden'>
                             <div className='bg-green-500 h-full' style={{ width: `${30}%` }}></div>
                         </div>
@@ -153,7 +172,9 @@ const PersonalForm: React.FC = () => {
                             onBlur={() => setFirstNameFocus(false)}
                             className="px-4 py-2 text-black text-sm border-2 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-green-500"
                             value={firstName}
-                            onChange={(e) => setFirstName(e.target.value)}
+                            onChange={(e) => {setFirstName(e.target.value);
+                                handleChange('firstName', e.target.value)
+                            }}
                             required
                         />
                     </div>
@@ -176,7 +197,9 @@ const PersonalForm: React.FC = () => {
                             onBlur={() => setLastNameFocus(false)}
                             className="px-4 py-2 text-black text-sm border-2 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-green-500"
                             value={lastName}
-                            onChange={(e) => setLastName(e.target.value)}
+                            onChange={(e) => {
+                                setLastName(e.target.value);
+                            handleChange('lastName', e.target.value)}}
                             required
                         />
                     </div>
@@ -199,7 +222,8 @@ const PersonalForm: React.FC = () => {
                             onBlur={() => setEmailFocus(false)}
                             className="px-4 py-2 text-black text-sm border-2 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-green-500"
                             value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            onChange={(e) => {setEmail(e.target.value);
+                            handleChange('email', e.target.value)}}
                         />
                         <p id="email-error" className={emailFocus && email ? "font-sm border-2 bg-black text-white p-1 relative bottom-[-10px]" : "absolute left-[-9999px]"}>
                             <FaCircleInfo className="inline-block mr-1" />
@@ -225,7 +249,10 @@ const PersonalForm: React.FC = () => {
                             placeholder="+255723424234"
                             className="px-4 py-2 text-black text-sm border-2 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
                             value={phone}
-                            onChange={(e) => setPhone(e.target.value)}
+                            onChange={(e) => {
+                                setPhone(e.target.value);
+                                handleChange('phone', e.target.value)
+                            }}
                             required
                         />
                         <p id="phone-note" className={phoneFocus && phone ? "font-sm border-2 bg-black text-white p-1 relative bottom-[-10px]" : "absolute left-[-9999px]"}>
@@ -252,7 +279,10 @@ const PersonalForm: React.FC = () => {
                             placeholder="National ID Number"
                             className="px-4 py-2 text-black text-sm border-2 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
                             value={nationalId}
-                            onChange={(e) => setNationalId(e.target.value)}
+                            onChange={(e) => {
+                                setNationalId(e.target.value);
+                                handleChange('nationalId', e.target.value)
+                            }}
                             required
                         />
                     </div>
@@ -268,7 +298,11 @@ const PersonalForm: React.FC = () => {
                             id="front_id"
                             name="front_id"
                             className="px-4 py-2 text-black text-sm border-2 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            onChange={(e) => setFrontId(e.target.files ? e.target.files[0] : null)}
+                            onChange={(e) => {
+                                const file = e.target.files ? e.target.files[0] : null;
+                                setFrontId(file);
+                                handleChange('frontId', file);
+                            }}
                             required
                         />
                     </div>
@@ -284,7 +318,11 @@ const PersonalForm: React.FC = () => {
                             id="back_id"
                             name="back_id"
                             className="px-4 py-2 text-black text-sm border-2 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            onChange={(e) => setBackId(e.target.files ? e.target.files[0] : null)}
+                            onChange={(e) => {
+                                const file = e.target.files ? e.target.files[0] : null;
+                                setBackId(file);
+                                handleChange('backId', file);
+                            }}
                             required
                         />
                     </div>
@@ -307,7 +345,9 @@ const PersonalForm: React.FC = () => {
                             placeholder="Ward"
                             className="px-4 py-2 text-black text-sm border-2 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
                             value={ward}
-                            onChange={(e) => setWard(e.target.value)}
+                            onChange={(e) => {
+                                setWard(e.target.value);
+                                handleChange('ward', e.target.value)}}
                             required
                         />
                     </div>
@@ -330,7 +370,9 @@ const PersonalForm: React.FC = () => {
                             placeholder="City"
                             className="px-4 py-2 text-black text-sm border-2 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
                             value={city}
-                            onChange={(e) => setCity(e.target.value)}
+                            onChange={(e) => {
+                                setCity(e.target.value);
+                                handleChange('city', e.target.value)}}
                             required
                         />
                     </div>
@@ -352,7 +394,8 @@ const PersonalForm: React.FC = () => {
                             placeholder="Postal Code"
                             className="px-4 py-2 text-black text-sm border-2 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
                             value={postalCode}
-                            onChange={(e) => setPostalCode(e.target.value)}
+                            onChange={(e) => {setPostalCode(e.target.value);
+                            handleChange('postalCode', e.target.value)}}
                             required
                         />
                     </div>
@@ -367,7 +410,8 @@ const PersonalForm: React.FC = () => {
                             autoComplete='off'
                             className="px-4 py-2 text-black text-sm border-2 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
                             value={loanType}
-                            onChange={(e) => setLoanType(e.target.value)}
+                            onChange={(e) => {setLoanType(e.target.value);
+                            handleChange('loanType', e.target.value)}}
                             required
                         >
                             <option>Maendeleo Bank Loan</option>
@@ -377,7 +421,7 @@ const PersonalForm: React.FC = () => {
 
                     <div className="col-span-6 sm:col-span-4 mb-2">
                         <label>
-                            <span className="text-base font-bold text-gray-800">Cylinder Size</span>
+                            <span className="text-base font-bold text-gray-800">Cylinder Size(Optional)</span>
                         </label>
                         <ul className="mt-3 ml-6 space-y-3">
                             {

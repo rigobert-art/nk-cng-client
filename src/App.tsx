@@ -18,12 +18,14 @@ import ViewLoan from './pages/loans/ViewLoan';
 import LoanLayout from './layout/LoanLayout';
 import VehicleForm from './pages/details/VehicleForm';
 import ContractTerms from './pages/details/LoanBreakdown';
+import { FormProvider } from './context/FormProvider';
 
 function App() {
 
   return (
     <div>
       <AuthProvider>
+        <FormProvider>
         <Router>
           <Routes>
             <Route element={<MainLayout />}>
@@ -53,6 +55,7 @@ function App() {
 
           </Routes>
         </Router>
+        </FormProvider>
       </AuthProvider>
 
     </div>

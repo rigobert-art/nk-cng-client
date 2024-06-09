@@ -1,25 +1,25 @@
 import React, { createContext, useState, ReactNode, FC, useContext } from 'react';
 
-interface FormState {
-    [key: string]: any;
-
-}
 
 interface FormContextProps {
-    formState: FormState;
-    setFormState: React.Dispatch<React.SetStateAction<FormState>>; 
+    formData: any;
+    setFormData: (data: any) => void; 
     formId: string;
-    setFormId: (formId: string) => void;
+    language: string;
+    setFormId: React.Dispatch<React.SetStateAction<string>>;
+    setLanguage: React.Dispatch<React.SetStateAction<string>>;
+    
 }
 
 const FormContext = createContext<FormContextProps | undefined>(undefined);
 
 export const FormProvider: FC<{ children: ReactNode }> = ({ children }) => {
-    const [formState, setFormState] = useState<FormState>({});
-    const [ formId, setFormId ] = useState<string>('')
+    const [formData, setFormData] = useState<any>({});
+    const [ formId, setFormId ] = useState<string>('');
+    const [language, setLanguage] = useState<string>('EN');
 
     return (
-        <FormContext.Provider value={{ formState, setFormState, formId, setFormId }}>
+        <FormContext.Provider value={{ formData, setFormData, formId, setFormId, language, setLanguage }}>
             {children}
         </FormContext.Provider>
     );

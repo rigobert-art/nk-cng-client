@@ -62,12 +62,12 @@ const Login = () => {
         <h1>Loan Portal</h1>
       </div>
 
-      <button type='button' className='flex w-full justify-center border lg:w-[400px] py-2 px-8 rounded-md mb-4'>
+      {/* <button type='button' className='flex w-full justify-center border lg:w-[400px] py-2 px-8 rounded-md mb-4'>
         <FcGoogle size="22px" />
         <p className=' px-2 font-bold'>Continue with Google </p>
 
       </button>
-      <p className='mb-4'>Or</p>
+      <p className='mb-4'>Or</p> */}
       <form onSubmit={handleSubmit} className='w-full mb-4 px-2' >
 
         <div className="mb-4">
