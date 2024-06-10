@@ -11,7 +11,6 @@ interface NavItem {
 }
 
 const Header: React.FC = () => {
-    const first_name = "John"; // Placeholder for first name
     const loan_balance = "0"; // Placeholder for loan balance
     const { user } = useAuth();
     const navigate = useNavigate();
