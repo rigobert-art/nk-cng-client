@@ -27,7 +27,7 @@ const Header: React.FC = () => {
 
 
     return (
-        <header className=" mx-auto bg-green-700 text-white overflow-hidden h-[350px] md:h-[230px] px-6 sm:px-8 md:px-12 font-serif lg:px-24">
+        <header className=" mx-auto bg-[#72c053] text-white overflow-hidden h-[350px] md:h-[230px] px-6 sm:px-8 md:px-12 font-serif lg:px-24">
             <div className="lg:px-8 font-bold m-4">
                 <div className='flex justify-between mb-6 items-center'>
                     <div>
@@ -56,7 +56,7 @@ const Header: React.FC = () => {
                                     </button>
                                 </div>
                                 <p className='text-4xl text-center mt-8 mb-16'>
-                                    TZS 303034
+                                    TZS 0
                                 </p>
                                 
                             </div>
@@ -64,7 +64,7 @@ const Header: React.FC = () => {
                     <div className="flex md:hidden flex-wrap justify-center gap-x-24 -mt-2">
                         {nav.map((item, key) => (
                             <Link key={key} to={item.link} className="text-center text-gray-600">
-                                <button className='bg-orange-400 px-2 py-2 rounded-md'>
+                                <button className='bg-white px-2 py-2 rounded-md'>
                                     {item.icon}
                                 </button>
                                 <p className="text-xs mt-[4px]">{item.name}</p>

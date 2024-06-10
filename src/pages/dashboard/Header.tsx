@@ -12,7 +12,7 @@ interface NavItem {
 
 const Header: React.FC = () => {
     const first_name = "John"; // Placeholder for first name
-    const loan_balance = "2000000"; // Placeholder for loan balance
+    const loan_balance = "0"; // Placeholder for loan balance
     const { user } = useAuth();
     const navigate = useNavigate();
 
@@ -38,7 +38,7 @@ const Header: React.FC = () => {
     };
 
     const cardDetails = [
-        { label: 'Total Loan', amount: loan_balance },
+        { label: 'Sum Loan', amount: loan_balance },
         { label: 'Total Balance', amount: loan_balance },
         { label: 'Monthly Amount', amount: loan_balance }
     ];

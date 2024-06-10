@@ -1,9 +1,6 @@
-import React, { useEffect, useState } from 'react';
 import Header from './Header';
 import { FiArrowRight, } from 'react-icons/fi';
-import axios from 'axios'
-import ViewLoan from './ViewLoan';
-import { useNavigate } from 'react-router-dom';
+
 
 
 interface Loan{
@@ -15,7 +12,7 @@ interface Loan{
  }
 
 const loans: Loan[] = [
-    { id: 1, loan_type: 'NK CNG Automotive Loan', balance: "20000" },
+    { id: 1, loan_type: 'NK CNG Automotive Loan', balance: "TZS 0" },
   
 ];
 // const navigate = useNavigate()

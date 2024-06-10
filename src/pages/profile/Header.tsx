@@ -15,12 +15,12 @@ const Header = () => {
     };
 
     return (
-        <section className='max-w-screen-full mx-auto bg-green-700 text-white overflow-hidden h-[180px] md:h-[230px] px-6 sm:px-8 md:px-12 lg:px-24'>
+        <section className='max-w-screen-full mx-auto bg-[#72c053] text-white overflow-hidden h-[180px] md:h-[230px] px-6 sm:px-8 md:px-12 lg:px-24'>
             <div className='m-8 flex flex-col'>
-                <div className='flex justify-between items-center mb-8'>
-                    <div className='flex items-center'>
+                <div className='flex justify-between items-center mb-4'>
+                    <div className='flex w-full justify-between items-center'>
                         <p className='text-3xl font-bold mr-4'>My Account</p>
-                        <img src={profileImage} alt="profile" className='rounded-full object-center bg-yellow-300 w-8 h-8' />
+                        <img src={profileImage} alt="profile" className='rounded-full object-center bg-yellow-300 w-12 h-12' />
                     </div>
                 </div>
 

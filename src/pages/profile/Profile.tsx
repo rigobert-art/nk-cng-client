@@ -1,12 +1,8 @@
 import React from 'react';
 import { useAuth } from '../../context/AuthProvider';
 import Header from './Header';
-import { MdAdd, MdDashboard, MdHelpOutline, MdPayment } from 'react-icons/md';
-
-import { Link } from 'react-router-dom';
 import { FiClipboard, FiEye, FiPaperclip, FiPhone } from 'react-icons/fi';
 import { AiFillMoneyCollect, AiFillWallet } from 'react-icons/ai';
-import { FcOnlineSupport } from 'react-icons/fc';
 
 export const Profile = () => {
   const { login, logout } = useAuth();
@@ -15,12 +11,12 @@ export const Profile = () => {
     {
       id: 1,
       icon: <FiClipboard />,
-      title: 'Loan Apply',
+      title: 'My Loan',
     },
     {
       id: 2,
       icon: <AiFillWallet />,
-      title: 'Pay Loan',
+      title: 'My Bank Account',
     },
     {
       id: 3,

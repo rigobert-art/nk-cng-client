@@ -52,7 +52,7 @@ const RegisterForm: React.FC = () => {
 
         try {
             setIsLoading(true);
-            const response = await axios.post('http://127.0.0.1:4000/api/v1/user/register', {
+            const response = await axios.post('http://172.233.137.139:4000/api/v1/user/register', {
                 phone,
                 name,
                 password,

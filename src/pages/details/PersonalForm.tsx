@@ -85,14 +85,22 @@ const PersonalForm: React.FC = () => {
 
         try {
             setIsLoading(true);
-            const response = await axios.post('http://127.0.0.1:4000/api/v1/form/personal', formData, 
-            {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            }
-            );
+            const response = await axios.post('http://172.233.137.139:4000/api/v1/form/personal', {
+                    phone, email, firstName, lastName, ward, city, postalCode, loanType, cylinderSize,
+                    nationalId, frontId, backId, formId
+    
+            }, )
+        //    const response2 = await axios.post('http://127.0.0.1:4000/api/v1/form/personal', {frontId, backId},
+        //         {
+        //             headers: {
+        //                 'Content-Type': 'multipart/form-data',
+        //             },
+        //         }
+        //     );
             setIsLoading(true);
+            console.log(response.data);
+            console.log(typeof(response.data));
+
 
             if (response.data.status === 'error') {
                 setIsError(response.data.message);
@@ -134,15 +142,14 @@ const PersonalForm: React.FC = () => {
             <form onSubmit={handleSubmit} className='container flex flex-col mx-auto space-y-12 mb-12 px-4'>
                 <p ref={errRef} className={error ? "text-red-500" : "text-green-500"} aria-live="assertive">{error}</p>
                 <div className=''>
-                    {/* back button goes here */}
-                    <FiArrowLeft className='w-4 h-4 relative *:top-10 *:left-10' />
+                
                     {/* title of the form is passed here */}
-                    <div className='flex flex-col px-12 md:items-center justify-center'>
-                        <div className='bg-green-700 w-24 h-32 rounded-lg '>
-                            <FiUser className='text-white w-16 h-20 m-auto mt-10' />
+                    <div className='flex flex-col px-12 md:items-center justify-center mt-12'>
+                        <div className='bg-green-700 w-24 h-28 mb-2 rounded-lg '>
+                            <FiUser className='text-white w-16 h-16 m-auto mt-10' />
                         </div>
                         <h1 className='text-2xl font-bold'>Personal Details</h1>
-                        <p className='text-gray-500'>{formId}</p>
+                        <p className='text-gray-500'>Please fill your personal details to continue</p>
                         <div className='w-[196px] mt-2  bg-gray-300 h-[4px] rounded-md overflow-hidden'>
                             <div className='bg-green-500 h-full' style={{ width: `${30}%` }}></div>
                         </div>
@@ -153,7 +160,7 @@ const PersonalForm: React.FC = () => {
 
                 </div>
 
-                <div className='grid grid-cols-6 gap-4 col-span-full lg:col-span-3 p-6'>
+                <div className='grid grid-cols-6 gap-4 col-span-full lg:col-span-3 px-6'>
                     <div className="col-span-6 sm:col-span-3 mb-2">
                         <label>
                             <span className="text-sm text-gray-600">First Name

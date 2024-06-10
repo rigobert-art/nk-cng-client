@@ -44,7 +44,7 @@ const OTPVerification: React.FC = () => {
 
     try {
       const otpCode = otp.join('');
-      const response = await axios.post('http://localhost:4000/api/v1/user/verify-otp', { phone, otp: otpCode });
+      const response = await axios.post('http://172.233.137.139:4000/api/v1/user/verify-otp', { phone, otp: otpCode });
       setMessage(response.data.message);
       console.log(response.data.message);
       console.log(typeof(response.data.message));
