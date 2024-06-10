@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { FiToggleLeft, FiToggleRight } from 'react-icons/fi';
-import profileImage from '../../assets/profile.jpg';
 
 const Header = () => {
     const [showBalances, setShowBalances] = useState(false);
@@ -20,7 +19,7 @@ const Header = () => {
                 <div className='flex justify-between items-center mb-4'>
                     <div className='flex w-full justify-between items-center'>
                         <p className='text-3xl font-bold mr-4'>My Account</p>
-                        <img src={profileImage} alt="profile" className='rounded-full object-center bg-yellow-300 w-12 h-12' />
+                        <img src={require('../../assets/profile.jpg')} alt="profile" className='rounded-full object-center bg-yellow-300 w-12 h-12' />
                     </div>
                 </div>
 

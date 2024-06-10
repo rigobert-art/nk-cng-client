@@ -12,7 +12,7 @@ const MainLayout: React.FC = () => {
  
     const resendOTP = async () => {
       try {
-        const response = await axios.post('http://localhost:5000/api/v1/user/resend-otp', { phone: user?.phone });
+        const response = await axios.post(`${process.env.base_url}/v1/user/resend-otp`, { phone: user?.phone });
 
         if (response.data.message === 'OTP resent successfully') {
           navigate('/verify-otp');
@@ -21,10 +21,6 @@ const MainLayout: React.FC = () => {
         console.error('Error resending OTP:', error);
       }
     };
-
-   
-  
-
   if (!user || !user.token) {
     return <Navigate to="/login" replace={true} />;
   }

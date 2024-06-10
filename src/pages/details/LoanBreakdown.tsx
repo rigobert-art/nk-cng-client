@@ -103,7 +103,7 @@ const ContractTerms: React.FC = () => {
 
       
         try {
-            const response = await axios.post('http://localhost:4000/api/v1/form/accept-terms', { userId: user?.id, accepted: true });
+            const response = await axios.post(`${process.env.base_url}/form/accept-terms`, { userId: user?.id, accepted: true });
             console.log(response.data);
             console.log(response.data.status);
             setIsLoading(true);

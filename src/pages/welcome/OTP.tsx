@@ -15,7 +15,7 @@ const OTPVerification: React.FC = () => {
 
   const handleResendOtp = async () => {
     try {
-      const response = await axios.post('http://localhost:4000/api/v1/user/resend-otp', { phone });
+      const response = await axios.post(`${process.env.base_url}/resend-otp`, { phone });
       setResendMessage(response.data.message);
     } catch (error: any) {
       setResendMessage(error.response?.data?.message || 'Failed to resend OTP');

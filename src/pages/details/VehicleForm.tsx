@@ -39,7 +39,7 @@ const VehicleForm: React.FC = () => {
             formData.append('color', vehicle.color);
             formData.append('registrationCard', vehicle.registrationCard as Blob);
 
-            const response = await axios.post('http://example.com/api/vehicle', formData, {
+            const response = await axios.post(`${process.env.base_url}/user/vehicle`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }

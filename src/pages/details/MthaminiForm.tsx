@@ -57,7 +57,7 @@ const MthaminiForm: React.FC = () => {
                 formData.append(`guarantors[${index}][letterFile]`, guarantor.letterFile as Blob);
             });
 
-            const response = await axios.post('http://example.com/api/guarantors', formData, {
+            const response = await axios.post(`${process.env.base_url}/guarantors`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }

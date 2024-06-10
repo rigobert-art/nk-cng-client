@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import profileImage from '../../assets/profile.jpg';
-import { FiClipboard, FiEye, FiEyeOff, FiArrowLeft, FiArrowRight, FiCreditCard, FiMenu } from 'react-icons/fi';
+import { FiEye, FiEyeOff, FiCreditCard, FiMenu } from 'react-icons/fi';
 
 interface NavItem {
     name: string;
@@ -18,8 +17,6 @@ const Header: React.FC = () => {
 
   
     const [showAmounts, setShowAmounts] = useState(true);
-
-
 
     const toggleShowAmounts = () => {
         setShowAmounts(!showAmounts);

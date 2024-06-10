@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import profileImage from '../../assets/profile.jpg';
 import { FiClipboard, FiEye, FiEyeOff, FiArrowLeft, FiArrowRight, FiAirplay, FiPaperclip } from 'react-icons/fi';
 import { useAuth } from '../../context/AuthProvider';
 
@@ -60,7 +59,7 @@ const Header: React.FC = () => {
                         </nav>
                         <img onClick= {() => {
                             navigate("/profile")
-                        }} src={profileImage} alt="profile" className="rounded-full object-center bg-yellow-300 w-12 h-12 md:w-12 mr-2 cursor-pointer" />
+                        }} src={require("../../assets/profile.jpg")} alt="profile" className="rounded-full object-center bg-yellow-300 w-12 h-12 md:w-12 mr-2 cursor-pointer" />
                     </div>
                 </div>
                 <div className='relative flex flex-col md:flex-row gap-x-4 justify-center'>
