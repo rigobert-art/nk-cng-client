@@ -1,8 +1,7 @@
 import React from 'react';
 import { useAuth } from '../../context/AuthProvider';
 import Header from './Header';
-import { FiClipboard, FiEye, FiPaperclip, FiPhone } from 'react-icons/fi';
-import { AiFillMoneyCollect, AiFillWallet } from 'react-icons/ai';
+import { FiClipboard, FiEye, FiPhone, FiSettings } from 'react-icons/fi';
 
 export const Profile = () => {
   const { login, logout } = useAuth();
@@ -15,31 +14,16 @@ export const Profile = () => {
     },
     {
       id: 2,
-      icon: <AiFillWallet />,
-      title: 'My Bank Account',
+      icon: <FiSettings />,
+      title: 'Settings', // configure notification, sms notification, 2FA, theme , etc.
     },
     {
       id: 3,
-      icon: <AiFillMoneyCollect />,
-      title: 'Liquidation',
-    },
-    {
-      id: 4,
-      icon: <FiPaperclip />,
-      title: 'Letter from the Local Government',
-    },
-    {
-      id: 5,
-      icon: <FiPaperclip />,
-      title: 'Letter from the Local Sponsor',
-    },
-    {
-      id: 6,
       icon: <FiPhone />,
       title: 'Contact Support',
     },
     {
-      id: 7,
+      id: 4,
       icon: <FiEye />,
       title: 'Reset Password',
     },

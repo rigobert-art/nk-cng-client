@@ -19,8 +19,29 @@ import LoanLayout from './layout/LoanLayout';
 import VehicleForm from './pages/details/VehicleForm';
 import ContractTerms from './pages/details/LoanBreakdown';
 import { FormProvider } from './context/FormProvider';
+import useScreenWidth from './hooks/useScreenwidth';
 
 function App() {
+  const screenWidth = useScreenWidth();
+
+  // Define the breakpoint for 'sm' screen (TailwindCSS md: 768px)
+  const mdBreakpoint = 412;
+  const mobileBreakpoint = 640;
+
+  // Check if the screen width falls within the 'md' range
+  const isMdScreen = screenWidth >= mdBreakpoint && screenWidth > 450;
+  const isMobileScreen = screenWidth < mdBreakpoint;
+
+  if (isMdScreen) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-red-100">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold">This application is not available for medium screens.</h1>
+          <p>Please use a mobile device.</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div>

@@ -13,6 +13,7 @@ const Login = () => {
   const { setIsLoggedIn } = useAppContext();
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  console.log(`${process.env.base_url}/user/login`)
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -20,7 +21,7 @@ const Login = () => {
     try {
     
         // Make the actual API call when the server is working
-      const response = await axios.post(`${process.env.base_url}/user/login`, {
+      const response = await axios.post('http://127.0.0.1:4000/api/v1/user/login', {
           phone,
           password,
         });

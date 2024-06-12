@@ -85,18 +85,11 @@ const PersonalForm: React.FC = () => {
 
         try {
             setIsLoading(true);
-            const response = await axios.post('http://172.233.137.139:4000/api/v1/form/personal', {
+            const response = await axios.post('http://127.0.0.1:4000/api/v1/form/personal', {
                     phone, email, firstName, lastName, ward, city, postalCode, loanType, cylinderSize,
-                    nationalId, frontId, backId, formId
+                    nationalId, formId
     
-            }, )
-        //    const response2 = await axios.post('http://127.0.0.1:4000/api/v1/form/personal', {frontId, backId},
-        //         {
-        //             headers: {
-        //                 'Content-Type': 'multipart/form-data',
-        //             },
-        //         }
-        //     );
+            }, )    
             setIsLoading(true);
             console.log(response.data);
             console.log(typeof(response.data));
@@ -111,6 +104,13 @@ const PersonalForm: React.FC = () => {
             if (response.data.status === 'Ok') {
                 setIsLoading(false);
                 setFormData({});
+                await axios.post('http://127.0.0.1:4000/api/v1/form/personal/upload', { formId, frontId, backId },
+                        {
+                            headers: {
+                                'Content-Type': 'multipart/form-data',
+                            },
+                        }
+                    );
                 navigate('/guarantor');
             }
         } catch (err) {
@@ -139,6 +139,7 @@ const PersonalForm: React.FC = () => {
 
     return (
         <section>
+            {isError && <p className='text-red-500'>{isError}</p>}
             <form onSubmit={handleSubmit} className='container flex flex-col mx-auto space-y-12 mb-12 px-4'>
                 <p ref={errRef} className={error ? "text-red-500" : "text-green-500"} aria-live="assertive">{error}</p>
                 <div className=''>
